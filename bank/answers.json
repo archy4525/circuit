@@ -1,0 +1,707 @@
+{
+  "bas-e-01": {
+    "type": "numeric",
+    "value": 400,
+    "unit": "mA",
+    "abs_tol": 0.5,
+    "rel_tol": 0.002,
+    "compute": {
+      "formula": "Q / t * 1000",
+      "vars": {
+        "Q": 2,
+        "t": 5
+      }
+    }
+  },
+  "bas-e-02": {
+    "type": "choice",
+    "correct_index": 1,
+    "conceptual": true
+  },
+  "bas-m-01": {
+    "type": "numeric",
+    "value": 3,
+    "unit": "V",
+    "abs_tol": 0.01,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "W / Q",
+      "vars": {
+        "W": 18,
+        "Q": 6
+      }
+    }
+  },
+  "bas-m-02": {
+    "type": "choice",
+    "correct_index": 1,
+    "conceptual": true
+  },
+  "bas-h-01": {
+    "type": "numeric",
+    "value": 10,
+    "unit": "µC",
+    "abs_tol": 0.05,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "I * t * 1e6",
+      "vars": {
+        "I": 0.0025,
+        "t": 0.004
+      }
+    }
+  },
+  "bas-h-02": {
+    "type": "choice",
+    "correct_index": 1,
+    "choice_values": [
+      1.5,
+      3,
+      6,
+      0.75
+    ],
+    "compute": {
+      "formula": "V * I * t",
+      "vars": {
+        "V": 3,
+        "I": 0.5,
+        "t": 2
+      }
+    }
+  },
+  "ohm-e-01": {
+    "type": "numeric",
+    "value": 5,
+    "unit": "mA",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "V / R * 1000",
+      "vars": {
+        "V": 9,
+        "R": 1800
+      }
+    }
+  },
+  "ohm-e-02": {
+    "type": "choice",
+    "correct_index": 2,
+    "choice_values": [
+      0.5,
+      1,
+      2,
+      4
+    ],
+    "compute": {
+      "formula": "(2 * V / R) / (V / R)",
+      "vars": {
+        "V": 9,
+        "R": 1800
+      }
+    }
+  },
+  "ohm-m-01": {
+    "type": "numeric",
+    "value": 400,
+    "unit": "mW",
+    "abs_tol": 1,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "I * I * R * 1000",
+      "vars": {
+        "I": 0.04,
+        "R": 250
+      }
+    }
+  },
+  "ohm-m-02": {
+    "type": "numeric",
+    "value": 48,
+    "unit": "Ω",
+    "abs_tol": 0.05,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "V * V / P",
+      "vars": {
+        "V": 12,
+        "P": 3
+      }
+    }
+  },
+  "ohm-h-01": {
+    "type": "numeric",
+    "value": 400,
+    "unit": "Ω",
+    "abs_tol": 1,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "Vb * Vb / (Ia * Ia * Ra)",
+      "vars": {
+        "Ia": 0.03,
+        "Ra": 100,
+        "Vb": 6
+      }
+    }
+  },
+  "ohm-h-02": {
+    "type": "choice",
+    "correct_index": 0,
+    "conceptual": true
+  },
+  "sp-e-01": {
+    "type": "numeric",
+    "value": 500,
+    "unit": "Ω",
+    "abs_tol": 0.5,
+    "rel_tol": 0.002,
+    "compute": {
+      "formula": "R1 + R2 + R3",
+      "vars": {
+        "R1": 120,
+        "R2": 180,
+        "R3": 200
+      }
+    }
+  },
+  "sp-e-02": {
+    "type": "choice",
+    "correct_index": 0,
+    "conceptual": true
+  },
+  "sp-m-01": {
+    "type": "numeric",
+    "value": 75,
+    "unit": "Ω",
+    "abs_tol": 0.05,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "1 / (1/R1 + 1/R2)",
+      "vars": {
+        "R1": 100,
+        "R2": 300
+      }
+    }
+  },
+  "sp-m-02": {
+    "type": "numeric",
+    "value": 60,
+    "unit": "Ω",
+    "abs_tol": 0.05,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "Rs + 1 / (1/Ra + 1/Rb)",
+      "vars": {
+        "Rs": 40,
+        "Ra": 60,
+        "Rb": 30
+      }
+    }
+  },
+  "sp-h-01": {
+    "type": "numeric",
+    "value": 30,
+    "unit": "Ω",
+    "abs_tol": 0.05,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "R0 + 1 / (1/R1 + 1/(R2 + R3))",
+      "vars": {
+        "R0": 10,
+        "R1": 40,
+        "R2": 20,
+        "R3": 20
+      }
+    }
+  },
+  "sp-h-02": {
+    "type": "numeric",
+    "value": 18,
+    "unit": "Ω",
+    "abs_tol": 0.05,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "R + 1 / (1/R + 1/R)",
+      "vars": {
+        "R": 12
+      }
+    }
+  },
+  "kv-e-01": {
+    "type": "numeric",
+    "value": 10,
+    "unit": "V",
+    "abs_tol": 0.05,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "Vs * R2 / (R1 + R2)",
+      "vars": {
+        "Vs": 15,
+        "R1": 1000,
+        "R2": 2000
+      }
+    }
+  },
+  "kv-e-02": {
+    "type": "numeric",
+    "value": 3,
+    "unit": "mA",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "It * R2 / (R2 + R4)",
+      "vars": {
+        "It": 9,
+        "R2": 2,
+        "R4": 4
+      }
+    }
+  },
+  "kv-m-01": {
+    "type": "numeric",
+    "value": 6,
+    "unit": "mA",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "I1 + I2 - I3",
+      "vars": {
+        "I1": 3,
+        "I2": 5,
+        "I3": 2
+      }
+    }
+  },
+  "kv-m-02": {
+    "type": "choice",
+    "correct_index": 1,
+    "conceptual": true
+  },
+  "kv-h-01": {
+    "type": "numeric",
+    "value": 2,
+    "unit": "mA",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "(V1 - V2) / (R1 + R2) * 1000",
+      "vars": {
+        "V1": 18,
+        "V2": 6,
+        "R1": 2000,
+        "R2": 4000
+      }
+    }
+  },
+  "kv-h-02": {
+    "type": "numeric",
+    "value": 4,
+    "unit": "mA",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "(Vs * (1/(1/R6+1/R3)) / (Rs + (1/(1/R6+1/R3)))) / R3 * 1000",
+      "vars": {
+        "Vs": 24,
+        "Rs": 2000,
+        "R6": 6000,
+        "R3": 3000
+      }
+    }
+  },
+  "eq-e-01": {
+    "type": "numeric",
+    "value": 5,
+    "unit": "V",
+    "abs_tol": 0.05,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "Vs * R2 / (R1 + R2)",
+      "vars": {
+        "Vs": 10,
+        "R1": 2000,
+        "R2": 2000
+      }
+    }
+  },
+  "eq-e-02": {
+    "type": "choice",
+    "correct_index": 1,
+    "conceptual": true
+  },
+  "eq-m-01": {
+    "type": "numeric",
+    "value": 1,
+    "unit": "kΩ",
+    "abs_tol": 0.02,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "(1 / (1/R1 + 1/R2)) / 1000",
+      "vars": {
+        "R1": 2000,
+        "R2": 2000
+      }
+    }
+  },
+  "eq-m-02": {
+    "type": "numeric",
+    "value": 3,
+    "unit": "mA",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "Vs / R * 1000",
+      "vars": {
+        "Vs": 12,
+        "R": 4000
+      }
+    }
+  },
+  "eq-h-01": {
+    "type": "numeric",
+    "value": 250,
+    "unit": "mW",
+    "abs_tol": 1,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "Vth * Vth / (4 * Rth) * 1000",
+      "vars": {
+        "Vth": 10,
+        "Rth": 100
+      }
+    }
+  },
+  "eq-h-02": {
+    "type": "numeric",
+    "value": 6,
+    "unit": "V",
+    "abs_tol": 0.05,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "Vth * RL / (Rth + RL)",
+      "vars": {
+        "Vth": 8,
+        "Rth": 200,
+        "RL": 600
+      }
+    }
+  },
+  "tr-e-01": {
+    "type": "choice",
+    "correct_index": 1,
+    "conceptual": true
+  },
+  "tr-e-02": {
+    "type": "numeric",
+    "value": 100,
+    "unit": "ms",
+    "abs_tol": 0.5,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "R * C * 1000",
+      "vars": {
+        "R": 2000,
+        "C": 5e-05
+      }
+    }
+  },
+  "tr-m-01": {
+    "type": "numeric",
+    "value": 6.321205588285577,
+    "unit": "V",
+    "abs_tol": 0.03,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "Vs * (1 - exp(-t / tau))",
+      "vars": {
+        "Vs": 10,
+        "t": 0.002,
+        "tau": 0.002
+      }
+    }
+  },
+  "tr-m-02": {
+    "type": "choice",
+    "correct_index": 1,
+    "conceptual": true
+  },
+  "tr-m-03": {
+    "type": "numeric",
+    "value": 1000,
+    "unit": "rad/s",
+    "abs_tol": 1,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "1 / sqrt(L * C)",
+      "vars": {
+        "L": 0.01,
+        "C": 0.0001
+      }
+    }
+  },
+  "tr-h-01": {
+    "type": "numeric",
+    "value": 1.4715177646857693,
+    "unit": "A",
+    "abs_tol": 0.01,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "I0 * exp(-t / tau)",
+      "vars": {
+        "I0": 4,
+        "t": 0.5,
+        "tau": 0.5
+      }
+    }
+  },
+  "tr-h-02": {
+    "type": "numeric",
+    "value": 4,
+    "unit": "mA",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "Vs / R * 1000",
+      "vars": {
+        "Vs": 20,
+        "R": 5000
+      }
+    }
+  },
+  "tr-h-03": {
+    "type": "choice",
+    "correct_index": 2,
+    "damping": "underdamped",
+    "damping_values": {
+      "R": 10,
+      "L": 0.01,
+      "C": 0.0001
+    }
+  },
+  "ph-e-01": {
+    "type": "numeric",
+    "value": 318.3098861837907,
+    "unit": "Ω",
+    "abs_tol": 1,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "1 / (2 * pi * f * C)",
+      "vars": {
+        "f": 50,
+        "C": 1e-05
+      }
+    }
+  },
+  "ph-e-02": {
+    "type": "numeric",
+    "value": 31.41592653589793,
+    "unit": "Ω",
+    "abs_tol": 0.05,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "2 * pi * f * L",
+      "vars": {
+        "f": 50,
+        "L": 0.1
+      }
+    }
+  },
+  "ph-m-01": {
+    "type": "numeric",
+    "value": 50,
+    "unit": "Ω",
+    "abs_tol": 0.05,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "sqrt(R * R + X * X)",
+      "vars": {
+        "R": 30,
+        "X": 40
+      }
+    }
+  },
+  "ph-m-02": {
+    "type": "choice",
+    "correct_index": 1,
+    "conceptual": true
+  },
+  "ph-h-01": {
+    "type": "numeric",
+    "value": 2,
+    "unit": "A",
+    "abs_tol": 0.02,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "V / sqrt(R * R + Xc * Xc)",
+      "vars": {
+        "V": 10,
+        "R": 3,
+        "Xc": 4
+      }
+    }
+  },
+  "ph-h-02": {
+    "type": "numeric",
+    "value": 0.6,
+    "unit": "—",
+    "abs_tol": 0.01,
+    "rel_tol": 0.02,
+    "compute": {
+      "formula": "R / sqrt(R * R + Xl * Xl)",
+      "vars": {
+        "R": 6,
+        "Xl": 8
+      }
+    }
+  },
+  "oa-e-01": {
+    "type": "choice",
+    "correct_index": 1,
+    "conceptual": true
+  },
+  "oa-e-02": {
+    "type": "numeric",
+    "value": -1.6,
+    "unit": "V",
+    "abs_tol": 0.02,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "-(Rf / Rin) * Vin",
+      "vars": {
+        "Rf": 20,
+        "Rin": 5,
+        "Vin": 0.4
+      }
+    }
+  },
+  "oa-m-01": {
+    "type": "numeric",
+    "value": 2.5,
+    "unit": "V",
+    "abs_tol": 0.02,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "(1 + Rf / Rg) * Vin",
+      "vars": {
+        "Rf": 9,
+        "Rg": 1,
+        "Vin": 0.25
+      }
+    }
+  },
+  "oa-m-02": {
+    "type": "numeric",
+    "value": -3,
+    "unit": "V",
+    "abs_tol": 0.02,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "-(Rf / R) * (V1 + V2)",
+      "vars": {
+        "Rf": 10,
+        "R": 10,
+        "V1": 1,
+        "V2": 2
+      }
+    }
+  },
+  "oa-h-01": {
+    "type": "numeric",
+    "value": 0.6,
+    "unit": "V",
+    "abs_tol": 0.02,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "(Rf / R1) * (V2 - V1)",
+      "vars": {
+        "Rf": 20,
+        "R1": 10,
+        "V2": 1.5,
+        "V1": 1.2
+      }
+    }
+  },
+  "oa-h-02": {
+    "type": "numeric",
+    "value": 16,
+    "unit": "kΩ",
+    "abs_tol": 0.05,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "8 * Rin",
+      "vars": {
+        "Rin": 2
+      }
+    }
+  },
+  "db-e-01": {
+    "type": "choice",
+    "correct_index": 1,
+    "conceptual": true
+  },
+  "db-e-02": {
+    "type": "numeric",
+    "value": 10,
+    "unit": "mA",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "(Vs - Vf) / R * 1000",
+      "vars": {
+        "Vs": 5,
+        "Vf": 0.7,
+        "R": 430
+      }
+    }
+  },
+  "db-m-01": {
+    "type": "numeric",
+    "value": 31.36363636363636,
+    "unit": "mA",
+    "abs_tol": 0.15,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "(Vs - Vz) / Rs * 1000",
+      "vars": {
+        "Vs": 12,
+        "Vz": 5.1,
+        "Rs": 220
+      }
+    }
+  },
+  "db-m-02": {
+    "type": "choice",
+    "correct_index": 1,
+    "conceptual": true
+  },
+  "db-h-01": {
+    "type": "numeric",
+    "value": 7.6,
+    "unit": "V",
+    "abs_tol": 0.05,
+    "rel_tol": 0.005,
+    "compute": {
+      "formula": "Vcc - (beta * Ib) * Rc",
+      "vars": {
+        "Vcc": 12,
+        "beta": 100,
+        "Ib": 2e-05,
+        "Rc": 2200
+      }
+    }
+  },
+  "db-h-02": {
+    "type": "numeric",
+    "value": 10,
+    "unit": "µA",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01,
+    "compute": {
+      "formula": "(Vcc - Vbe) / Rb * 1e6",
+      "vars": {
+        "Vcc": 9,
+        "Vbe": 0.7,
+        "Rb": 830000
+      }
+    }
+  }
+}

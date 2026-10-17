@@ -1,0 +1,187 @@
+{
+  "aac_vi": {
+    "title": "All About Circuits, Lessons in Electric Circuits, Vol. I — DC, Ch. 1 Voltage and Current",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-1/voltage-current/",
+    "covers": "電壓、電流與電荷流動"
+  },
+  "aac_resistance": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 1 Resistance",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-1/resistance/",
+    "covers": "電阻、開路與閉路"
+  },
+  "aac_flow": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 1 Conventional Versus Electron Flow",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-1/conventional-versus-electron-flow/",
+    "covers": "傳統電流與電子流"
+  },
+  "aac_ohm": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 2 Ohm’s Law",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-2/voltage-current-resistance-relate/",
+    "covers": "歐姆定律"
+  },
+  "aac_power": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 2 Power in Electric Circuits",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-2/power-electric-circuits/",
+    "covers": "電功率"
+  },
+  "aac_sp": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 5 Series and Parallel Circuits",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-5/what-are-series-and-parallel-circuits/",
+    "covers": "串聯與並聯的差異"
+  },
+  "aac_parallel": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 5 Parallel Circuits",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-5/simple-parallel-circuits/",
+    "covers": "並聯電壓、電流與等效電阻"
+  },
+  "aac_vdiv": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 6 Voltage Divider Circuits",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-6/voltage-divider-circuits/",
+    "covers": "分壓"
+  },
+  "aac_idiv": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 6 Current Divider Circuits",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-6/current-divider-circuits/",
+    "covers": "分流"
+  },
+  "aac_kvl": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 6 Kirchhoff’s Voltage Law",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-6/kirchhoffs-voltage-law-kvl/",
+    "covers": "克希荷夫電壓定律"
+  },
+  "aac_kcl": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 6 Kirchhoff’s Current Law",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-6/kirchhoffs-current-law-kcl/",
+    "covers": "克希荷夫電流定律"
+  },
+  "aac_combo": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 7 Series-Parallel Circuits",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-7/what-is-a-series-parallel-circuit/",
+    "covers": "串並聯組合"
+  },
+  "aac_thevenin": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 10 Thevenin’s Theorem",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-10/thevenins-theorem/",
+    "covers": "戴維寧等效"
+  },
+  "aac_norton": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 10 Norton’s Theorem",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-10/nortons-theorem/",
+    "covers": "諾頓等效"
+  },
+  "aac_pmax": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 10 Maximum Power Transfer Theorem",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-10/maximum-power-transfer-theorem/",
+    "covers": "最大功率傳輸"
+  },
+  "aac_rc": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 16 Capacitor Transient Response",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-16/capacitor-transient-response/",
+    "covers": "電容暫態"
+  },
+  "aac_rl": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 16 Inductor Transient Response",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-16/inductor-transient-response/",
+    "covers": "電感暫態"
+  },
+  "aac_tau": {
+    "title": "All About Circuits, Vol. I — DC, Ch. 16 Voltage and Current Calculations",
+    "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-16/voltage-and-current-calculations/",
+    "covers": "時間常數與指數暫態"
+  },
+  "aac_xl": {
+    "title": "All About Circuits, Vol. II — AC, Ch. 3 AC Inductor Circuits",
+    "url": "https://www.allaboutcircuits.com/textbook/alternating-current/chpt-3/ac-inductor-circuits/",
+    "covers": "感抗"
+  },
+  "aac_xc": {
+    "title": "All About Circuits, Vol. II — AC, Ch. 4 AC Capacitor Circuits",
+    "url": "https://www.allaboutcircuits.com/textbook/alternating-current/chpt-4/ac-capacitor-circuits/",
+    "covers": "容抗與電容相位"
+  },
+  "aac_z": {
+    "title": "All About Circuits, Vol. II — AC, Ch. 5 Series R, L, and C",
+    "url": "https://www.allaboutcircuits.com/textbook/alternating-current/chpt-5/series-r-l-and-c/",
+    "covers": "阻抗"
+  },
+  "aac_pf": {
+    "title": "All About Circuits, Vol. II — AC, Ch. 11 Calculating Power Factor",
+    "url": "https://www.allaboutcircuits.com/textbook/alternating-current/chpt-11/calculating-power-factor/",
+    "covers": "功率因數"
+  },
+  "aac_diode": {
+    "title": "All About Circuits, Vol. III — Semiconductors, Ch. 3 Introduction to Diodes and Rectifiers",
+    "url": "https://www.allaboutcircuits.com/textbook/semiconductors/chpt-3/introduction-to-diodes-and-rectifiers/",
+    "covers": "二極體順向與反向"
+  },
+  "aac_zener": {
+    "title": "All About Circuits, Vol. III — Semiconductors, Ch. 3 Zener Diodes",
+    "url": "https://www.allaboutcircuits.com/textbook/semiconductors/chpt-3/zener-diodes/",
+    "covers": "齊納二極體穩壓"
+  },
+  "aac_bjt": {
+    "title": "All About Circuits, Vol. III — Semiconductors, Ch. 2 Bipolar Junction Transistors",
+    "url": "https://www.allaboutcircuits.com/textbook/semiconductors/chpt-2/bipolar-junction-transistors/",
+    "covers": "BJT 與 β"
+  },
+  "aac_bias": {
+    "title": "All About Circuits, Vol. III — Semiconductors, Ch. 4 Biasing Techniques (BJT)",
+    "url": "https://www.allaboutcircuits.com/textbook/semiconductors/chpt-4/biasing-techniques-bjt/",
+    "covers": "電晶體偏壓"
+  },
+  "aac_ce": {
+    "title": "All About Circuits, Vol. III — Semiconductors, Ch. 4 The Common-Emitter Amplifier",
+    "url": "https://www.allaboutcircuits.com/textbook/semiconductors/chpt-4/common-emitter-amplifier/",
+    "covers": "作用區與集極電流"
+  },
+  "aac_fb": {
+    "title": "All About Circuits, Vol. III — Semiconductors, Ch. 8 Negative Feedback",
+    "url": "https://www.allaboutcircuits.com/textbook/semiconductors/chpt-8/negative-feedback/",
+    "covers": "理想運算放大器的負回授"
+  },
+  "aac_gain": {
+    "title": "All About Circuits, Vol. III — Semiconductors, Ch. 8 Divided Feedback",
+    "url": "https://www.allaboutcircuits.com/textbook/semiconductors/chpt-8/divided-feedback/",
+    "covers": "反相與非反相放大"
+  },
+  "aac_sum": {
+    "title": "All About Circuits, Vol. III — Semiconductors, Ch. 8 Averager and Summer Circuits",
+    "url": "https://www.allaboutcircuits.com/textbook/semiconductors/chpt-8/averager-summer-circuits/",
+    "covers": "加法器"
+  },
+  "aac_diff": {
+    "title": "All About Circuits, Vol. III — Semiconductors, Ch. 8 Building a Differential Amplifier",
+    "url": "https://www.allaboutcircuits.com/textbook/semiconductors/chpt-8/building-a-differential-amplifier/",
+    "covers": "差分放大"
+  },
+  "nycu_ch1": {
+    "title": "陽明交通大學 OCW《電路學概論》112 學年度，陳永平，第一章 基本觀念",
+    "url": "https://ocw.nycu.edu.tw/?course_page=all-course%2Fcollege-of-electrical-and-computer-engineering%2Fintroduction-to-electric-circuit-112",
+    "covers": "基本電路變數"
+  },
+  "nycu_ch2": {
+    "title": "陽明交通大學 OCW《電路學概論》112 學年度，陳永平，第二章 電阻電路",
+    "url": "https://ocw.nycu.edu.tw/?course_page=all-course%2Fcollege-of-electrical-and-computer-engineering%2Fintroduction-to-electric-circuit-112",
+    "covers": "電阻電路與網路定理"
+  },
+  "nycu_ch3": {
+    "title": "陽明交通大學 OCW《電路學概論》112 學年度，陳永平，第三章 一階線性電路",
+    "url": "https://ocw.nycu.edu.tw/?course_page=all-course%2Fcollege-of-electrical-and-computer-engineering%2Fintroduction-to-electric-circuit-112",
+    "covers": "一階 RC 與 RL"
+  },
+  "nycu_ch4": {
+    "title": "陽明交通大學 OCW《電路學概論》112 學年度，陳永平，第四章 高階線性電路",
+    "url": "https://ocw.nycu.edu.tw/?course_page=all-course%2Fcollege-of-electrical-and-computer-engineering%2Fintroduction-to-electric-circuit-112",
+    "covers": "二階電路與阻尼"
+  },
+  "nycu_ch5": {
+    "title": "陽明交通大學 OCW《電路學概論》112 學年度，陳永平，第五章 相量法",
+    "url": "https://ocw.nycu.edu.tw/?course_page=all-course%2Fcollege-of-electrical-and-computer-engineering%2Fintroduction-to-electric-circuit-112",
+    "covers": "相量與阻抗"
+  },
+  "nycu_ch6": {
+    "title": "陽明交通大學 OCW《電路學概論》112 學年度，陳永平，第六章 運算放大器",
+    "url": "https://ocw.nycu.edu.tw/?course_page=all-course%2Fcollege-of-electrical-and-computer-engineering%2Fintroduction-to-electric-circuit-112",
+    "covers": "理想運算放大器"
+  }
+}

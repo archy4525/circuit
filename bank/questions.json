@@ -1,0 +1,838 @@
+[
+  {
+    "id": "bas-e-01",
+    "topic": "basics",
+    "difficulty": "easy",
+    "type": "numeric",
+    "prompt": "有 2 C 的電荷在 5 s 內穩定通過導線的一個截面。電流是多少 mA？",
+    "unit": "mA"
+  },
+  {
+    "id": "bas-e-02",
+    "topic": "basics",
+    "difficulty": "easy",
+    "type": "choice",
+    "prompt": "電流的 SI 單位是哪一個？",
+    "choices": [
+      "伏特（V），用來表示每單位電荷的能量",
+      "安培（A），等於每秒通過 1 庫倫",
+      "歐姆（Ω），用來表示對電流的阻礙",
+      "瓦特（W），用來表示能量轉換的速率"
+    ]
+  },
+  {
+    "id": "bas-m-01",
+    "topic": "basics",
+    "difficulty": "medium",
+    "type": "numeric",
+    "prompt": "把 6 C 的正電荷由 B 點移到 A 點，外力做功 18 J。A、B 兩點電位差的大小是多少 V？",
+    "unit": "V"
+  },
+  {
+    "id": "bas-m-02",
+    "topic": "basics",
+    "difficulty": "medium",
+    "type": "choice",
+    "prompt": "在金屬導線裡，傳統電流方向和電子實際移動方向的關係是什麼？",
+    "choices": [
+      "兩者永遠相同，因為電子帶正電",
+      "傳統電流以正電荷的移動方向為準，電子流向與它相反",
+      "只有交流電路才需要區分這兩種方向",
+      "電子流向就是工程圖上的傳統電流方向"
+    ]
+  },
+  {
+    "id": "bas-h-01",
+    "topic": "basics",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "某支路的穩定電流是 2.5 mA，持續 4 ms。這段時間通過截面的電荷是多少 µC？",
+    "unit": "µC",
+    "notes": [
+      "電流在這 4 ms 內維持不變。"
+    ]
+  },
+  {
+    "id": "bas-h-02",
+    "topic": "basics",
+    "difficulty": "hard",
+    "type": "choice",
+    "prompt": "一個 3 V 的理想電壓源，以 0.5 A 的穩定電流持續供電 2 s。這段時間電源提供的能量是多少？",
+    "choices": [
+      "1.5 J，只把電壓和電流相乘",
+      "3 J，電壓、電流與時間一起相乘",
+      "6 J，把電壓、電流和時間先加起來",
+      "0.75 J，用電流乘時間再除以電壓"
+    ]
+  },
+  {
+    "id": "ohm-e-01",
+    "topic": "ohm_power",
+    "difficulty": "easy",
+    "type": "numeric",
+    "prompt": "9 V 的直流電壓源直接接在 1.8 kΩ 電阻兩端。流過電阻的電流是多少 mA？",
+    "unit": "mA",
+    "notes": [
+      "電壓源視為理想電壓源，導線電阻忽略。"
+    ],
+    "diagram": {
+      "kind": "series",
+      "title": "單迴路",
+      "parts": [
+        {
+          "sym": "v",
+          "name": "9 V"
+        },
+        {
+          "sym": "r",
+          "name": "1.8 kΩ"
+        }
+      ],
+      "caption": "求電阻電流"
+    }
+  },
+  {
+    "id": "ohm-e-02",
+    "topic": "ohm_power",
+    "difficulty": "easy",
+    "type": "choice",
+    "prompt": "一顆電阻的阻值維持不變。電壓變成原來的 2 倍時，電流會怎麼變？",
+    "choices": [
+      "變成原來的 1/2",
+      "維持不變，因為電阻沒有變",
+      "變成原來的 2 倍",
+      "變成原來的 4 倍"
+    ]
+  },
+  {
+    "id": "ohm-m-01",
+    "topic": "ohm_power",
+    "difficulty": "medium",
+    "type": "numeric",
+    "prompt": "250 Ω 的電阻通過 40 mA 的電流。它消耗的功率是多少 mW？",
+    "unit": "mW"
+  },
+  {
+    "id": "ohm-m-02",
+    "topic": "ohm_power",
+    "difficulty": "medium",
+    "type": "numeric",
+    "prompt": "一顆電阻兩端是 12 V，消耗的功率是 3 W。這顆電阻是多少 Ω？",
+    "unit": "Ω"
+  },
+  {
+    "id": "ohm-h-01",
+    "topic": "ohm_power",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "甲電阻 100 Ω，通過 30 mA。乙電阻兩端是 6 V，而且兩顆電阻消耗的功率相同。乙電阻是多少 Ω？",
+    "unit": "Ω"
+  },
+  {
+    "id": "ohm-h-02",
+    "topic": "ohm_power",
+    "difficulty": "hard",
+    "type": "choice",
+    "prompt": "對一顆符合歐姆定律的電阻，下面哪一組式子全部等於它消耗的功率？",
+    "choices": [
+      "V I、I² R、V² / R",
+      "V I、I R、V / R",
+      "V / I、I² R、V² R",
+      "V I、I² / R、V² R"
+    ]
+  },
+  {
+    "id": "sp-e-01",
+    "topic": "series_parallel",
+    "difficulty": "easy",
+    "type": "numeric",
+    "prompt": "120 Ω、180 Ω 和 200 Ω 三顆電阻串聯。等效電阻是多少 Ω？",
+    "unit": "Ω",
+    "diagram": {
+      "kind": "series",
+      "title": "三顆電阻串聯",
+      "parts": [
+        {
+          "sym": "r",
+          "name": "120 Ω"
+        },
+        {
+          "sym": "r",
+          "name": "180 Ω"
+        },
+        {
+          "sym": "r",
+          "name": "200 Ω"
+        }
+      ]
+    }
+  },
+  {
+    "id": "sp-e-02",
+    "topic": "series_parallel",
+    "difficulty": "easy",
+    "type": "choice",
+    "prompt": "理想導線構成的並聯電路中，各支路兩端的電壓有什麼關係？",
+    "choices": [
+      "一定相同，因為它們接在同一對節點",
+      "和各支路電阻成正比",
+      "代數和一定是零",
+      "只有電阻最大的支路有電壓"
+    ]
+  },
+  {
+    "id": "sp-m-01",
+    "topic": "series_parallel",
+    "difficulty": "medium",
+    "type": "numeric",
+    "prompt": "100 Ω 與 300 Ω 兩顆電阻並聯。等效電阻是多少 Ω？",
+    "unit": "Ω",
+    "diagram": {
+      "kind": "parallel",
+      "title": "兩顆並聯",
+      "feed": "同一電壓",
+      "branches": [
+        "100 Ω",
+        "300 Ω"
+      ]
+    }
+  },
+  {
+    "id": "sp-m-02",
+    "topic": "series_parallel",
+    "difficulty": "medium",
+    "type": "numeric",
+    "prompt": "40 Ω 先和一組並聯組合串聯。並聯的是 60 Ω 與 30 Ω。從電源兩端看進去，等效電阻是多少 Ω？",
+    "unit": "Ω",
+    "diagram": {
+      "kind": "series_parallel",
+      "title": "先並後串",
+      "series": "40 Ω",
+      "branches": [
+        "60 Ω",
+        "30 Ω"
+      ]
+    }
+  },
+  {
+    "id": "sp-h-01",
+    "topic": "series_parallel",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "10 Ω 串在外側。內側是 40 Ω，與「20 Ω 再串 20 Ω」這條支路並聯。等效電阻是多少 Ω？",
+    "unit": "Ω",
+    "diagram": {
+      "kind": "nested",
+      "title": "由內往外化簡",
+      "series": "10 Ω",
+      "left": "40 Ω",
+      "right_series": [
+        "20 Ω",
+        "20 Ω"
+      ]
+    }
+  },
+  {
+    "id": "sp-h-02",
+    "topic": "series_parallel",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "三顆都是 12 Ω。先把其中兩顆並聯，再和第三顆串聯。等效電阻是多少 Ω？",
+    "unit": "Ω"
+  },
+  {
+    "id": "kv-e-01",
+    "topic": "kirchhoff",
+    "difficulty": "easy",
+    "type": "numeric",
+    "prompt": "15 V 接到兩顆串聯電阻。靠近電源正極的是 1 kΩ，另一顆是 2 kΩ。2 kΩ 兩端的電壓是多少 V？",
+    "unit": "V",
+    "diagram": {
+      "kind": "divider",
+      "title": "分壓",
+      "vin": "15 V",
+      "r_top": "1 kΩ",
+      "r_bot": "2 kΩ",
+      "meter": "V2"
+    }
+  },
+  {
+    "id": "kv-e-02",
+    "topic": "kirchhoff",
+    "difficulty": "easy",
+    "type": "numeric",
+    "prompt": "9 mA 流入 2 kΩ 與 4 kΩ 的並聯組合。流過 4 kΩ 的電流是多少 mA？",
+    "unit": "mA",
+    "diagram": {
+      "kind": "parallel",
+      "title": "分流",
+      "feed": "9 mA",
+      "branches": [
+        "2 kΩ",
+        "4 kΩ"
+      ],
+      "caption": "求 4 kΩ 的電流"
+    }
+  },
+  {
+    "id": "kv-m-01",
+    "topic": "kirchhoff",
+    "difficulty": "medium",
+    "type": "numeric",
+    "prompt": "一個節點有四條支路。3 mA 與 5 mA 流入，2 mA 流出。第四條支路也是流出，它的電流是多少 mA？",
+    "unit": "mA",
+    "diagram": {
+      "kind": "node",
+      "title": "節點",
+      "ins": [
+        "3 mA",
+        "5 mA"
+      ],
+      "outs": [
+        "2 mA",
+        "Ix"
+      ],
+      "caption": "Ix 為流出"
+    }
+  },
+  {
+    "id": "kv-m-02",
+    "topic": "kirchhoff",
+    "difficulty": "medium",
+    "type": "choice",
+    "prompt": "沿著任何一個封閉迴路把各元件電壓依正負相加，代數和是多少？",
+    "choices": [
+      "等於迴路裡最大的那顆電阻電壓",
+      "等於零",
+      "等於電源電壓，而且不能再減掉電阻壓降",
+      "等於電流乘上總電阻，所以只有開路才是零"
+    ]
+  },
+  {
+    "id": "kv-h-01",
+    "topic": "kirchhoff",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "單迴路依序串聯：18 V 電壓源、2 kΩ、反向的 6 V 電壓源、4 kΩ。若 18 V 推動順時針電流、6 V 反對它，電流是多少 mA？",
+    "unit": "mA",
+    "notes": [
+      "兩顆電壓源都是理想電壓源。電流方向以順時針為正。"
+    ],
+    "diagram": {
+      "kind": "series",
+      "title": "兩個電壓源",
+      "parts": [
+        {
+          "sym": "v",
+          "name": "18 V"
+        },
+        {
+          "sym": "r",
+          "name": "2 kΩ"
+        },
+        {
+          "sym": "v",
+          "name": "6 V 反向"
+        },
+        {
+          "sym": "r",
+          "name": "4 kΩ"
+        }
+      ],
+      "caption": "順時針電流為正"
+    }
+  },
+  {
+    "id": "kv-h-02",
+    "topic": "kirchhoff",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "24 V 接到 2 kΩ，再串上一組並聯：6 kΩ 與 3 kΩ。流過 3 kΩ 的電流是多少 mA？",
+    "unit": "mA",
+    "diagram": {
+      "kind": "series_parallel",
+      "title": "串聯後再分流",
+      "series": "2 kΩ",
+      "branches": [
+        "6 kΩ",
+        "3 kΩ"
+      ],
+      "caption": "電源 24 V，求 3 kΩ"
+    }
+  },
+  {
+    "id": "eq-e-01",
+    "topic": "equivalent",
+    "difficulty": "easy",
+    "type": "numeric",
+    "prompt": "10 V 電壓源與兩顆 2 kΩ 串聯。移走負載後，由下方那顆電阻的兩端看進去，戴維寧電壓是多少 V？",
+    "unit": "V",
+    "diagram": {
+      "kind": "thevenin",
+      "title": "開路端口",
+      "v": "10 V",
+      "r1": "2 kΩ",
+      "r2": "2 kΩ"
+    }
+  },
+  {
+    "id": "eq-e-02",
+    "topic": "equivalent",
+    "difficulty": "easy",
+    "type": "choice",
+    "prompt": "線性來源的內阻固定，負載電阻可以調整。負載得到最大功率的條件是什麼？",
+    "choices": [
+      "負載電阻等於零，電流才最大",
+      "負載電阻等於戴維寧電阻",
+      "負載電阻等於戴維寧電阻的兩倍",
+      "負載電阻越大，功率一定越大"
+    ]
+  },
+  {
+    "id": "eq-m-01",
+    "topic": "equivalent",
+    "difficulty": "medium",
+    "type": "numeric",
+    "prompt": "還是 10 V 與兩顆 2 kΩ 串聯，由下方電阻兩端看進去。把電壓源改成短路後，戴維寧電阻是多少 kΩ？",
+    "unit": "kΩ"
+  },
+  {
+    "id": "eq-m-02",
+    "topic": "equivalent",
+    "difficulty": "medium",
+    "type": "numeric",
+    "prompt": "12 V 理想電壓源只串一顆 4 kΩ，由電阻的另一端和電源負端看進去。諾頓電流是多少 mA？",
+    "unit": "mA",
+    "diagram": {
+      "kind": "series",
+      "title": "端口短路即得 In",
+      "parts": [
+        {
+          "sym": "v",
+          "name": "12 V"
+        },
+        {
+          "sym": "r",
+          "name": "4 kΩ"
+        }
+      ],
+      "caption": "輸出端短路"
+    }
+  },
+  {
+    "id": "eq-h-01",
+    "topic": "equivalent",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "某網路的戴維寧等效是 10 V 串 100 Ω。負載調到可以拿到最大功率時，負載功率是多少 mW？",
+    "unit": "mW"
+  },
+  {
+    "id": "eq-h-02",
+    "topic": "equivalent",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "戴維寧等效是 8 V 串 200 Ω。接上 600 Ω 負載時，負載電壓是多少 V？",
+    "unit": "V",
+    "diagram": {
+      "kind": "series",
+      "title": "接上負載",
+      "parts": [
+        {
+          "sym": "v",
+          "name": "8 V"
+        },
+        {
+          "sym": "r",
+          "name": "200 Ω"
+        },
+        {
+          "sym": "r",
+          "name": "600 Ω"
+        }
+      ],
+      "caption": "求 600 Ω 的電壓"
+    }
+  },
+  {
+    "id": "tr-e-01",
+    "topic": "transient",
+    "difficulty": "easy",
+    "type": "choice",
+    "prompt": "直流穩態、暫態已經結束時，理想電容在電路裡相當於什麼？",
+    "choices": [
+      "短路，因為它兩端電壓會變成零",
+      "開路，因為穩定直流不能再對它充電",
+      "一顆和電容值相同的電阻",
+      "0 V 的電壓源，而且仍允許穩定直流通過"
+    ]
+  },
+  {
+    "id": "tr-e-02",
+    "topic": "transient",
+    "difficulty": "easy",
+    "type": "numeric",
+    "prompt": "2 kΩ 電阻與 50 µF 電容串聯。時間常數是多少 ms？",
+    "unit": "ms",
+    "diagram": {
+      "kind": "rc",
+      "title": "串聯 RC",
+      "v": "直流",
+      "r": "2 kΩ",
+      "c": "50 µF",
+      "caption": "求時間常數"
+    }
+  },
+  {
+    "id": "tr-m-01",
+    "topic": "transient",
+    "difficulty": "medium",
+    "type": "numeric",
+    "prompt": "電容原本是 0 V。t = 0 時接到 10 V 直流，時間常數是 2 ms。t = 2 ms 時，電容電壓大約是多少 V？至少算到小數第二位。",
+    "unit": "V",
+    "notes": [
+      "t = 0 以前電容電壓為 0。",
+      "充電公式使用題目給的時間常數，不必再求 R 或 C。"
+    ]
+  },
+  {
+    "id": "tr-m-02",
+    "topic": "transient",
+    "difficulty": "medium",
+    "type": "choice",
+    "prompt": "直流穩態、暫態已經結束時，理想電感在電路裡相當於什麼？",
+    "choices": [
+      "開路，因為磁能會把電流截斷",
+      "短路，因為穩定電流不再產生感應電壓",
+      "一顆很大的電阻",
+      "電流源，大小一定等於電源電壓"
+    ]
+  },
+  {
+    "id": "tr-m-03",
+    "topic": "transient",
+    "difficulty": "medium",
+    "type": "numeric",
+    "prompt": "串聯 RLC 的 L = 10 mH、C = 100 µF。無阻尼自然角頻率 ω0 是多少 rad/s？",
+    "unit": "rad/s",
+    "notes": [
+      "電阻不影響 ω0，所以題目不必給 R。"
+    ]
+  },
+  {
+    "id": "tr-h-01",
+    "topic": "transient",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "電感帶著 4 A 的初始電流，改接到電阻放電。時間常數是 0.5 s。t = 0.5 s 時電流大約是多少 A？至少算到小數第三位。",
+    "unit": "A",
+    "diagram": {
+      "kind": "rl",
+      "title": "放電迴路",
+      "v": "已移除",
+      "r": "R",
+      "l": "L，I0 = 4 A",
+      "caption": "t = τ"
+    }
+  },
+  {
+    "id": "tr-h-02",
+    "topic": "transient",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "20 V、5 kΩ 與 2 µF 串聯。電容原本是 0 V，t = 0 開關閉合。閉合後瞬間的電流 i(0+) 是多少 mA？",
+    "unit": "mA",
+    "notes": [
+      "t = 0 以前開關打開，電容電壓為 0。"
+    ],
+    "diagram": {
+      "kind": "rc",
+      "title": "t = 0 閉合",
+      "v": "20 V",
+      "r": "5 kΩ",
+      "c": "2 µF",
+      "caption": "求 i(0+)"
+    }
+  },
+  {
+    "id": "tr-h-03",
+    "topic": "transient",
+    "difficulty": "hard",
+    "type": "choice",
+    "prompt": "無源串聯 RLC：R = 10 Ω，L = 10 mH，C = 100 µF。自然響應屬於哪一種？",
+    "choices": [
+      "過阻尼，因為衰減係數大於自然角頻率",
+      "臨界阻尼，因為兩者正好相等",
+      "欠阻尼，因為衰減係數小於自然角頻率",
+      "只有再加一個電源才能判斷"
+    ],
+    "notes": [
+      "電路沒有外加電源，討論的是初始能量造成的自然響應。"
+    ]
+  },
+  {
+    "id": "ph-e-01",
+    "topic": "phasor",
+    "difficulty": "easy",
+    "type": "numeric",
+    "prompt": "頻率 50 Hz、電容 10 µF。容抗大約是多少 Ω？四捨五入到整數即可。",
+    "unit": "Ω"
+  },
+  {
+    "id": "ph-e-02",
+    "topic": "phasor",
+    "difficulty": "easy",
+    "type": "numeric",
+    "prompt": "頻率 50 Hz、電感 100 mH。感抗大約是多少 Ω？四捨五入到小數一位即可。",
+    "unit": "Ω"
+  },
+  {
+    "id": "ph-m-01",
+    "topic": "phasor",
+    "difficulty": "medium",
+    "type": "numeric",
+    "prompt": "串聯電路的電阻是 30 Ω，感抗是 40 Ω，沒有電容。阻抗的大小是多少 Ω？",
+    "unit": "Ω",
+    "diagram": {
+      "kind": "impedance",
+      "title": "串聯阻抗",
+      "v": "交流",
+      "parts": [
+        "30 Ω",
+        "j40 Ω"
+      ]
+    }
+  },
+  {
+    "id": "ph-m-02",
+    "topic": "phasor",
+    "difficulty": "medium",
+    "type": "choice",
+    "prompt": "理想電容單獨接在正弦電壓上時，電流和電壓的相位關係是什麼？",
+    "choices": [
+      "電流落後電壓 90°",
+      "電流領先電壓 90°",
+      "電流和電壓同相",
+      "電流和電壓相差 180°"
+    ]
+  },
+  {
+    "id": "ph-h-01",
+    "topic": "phasor",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "串聯電路的電阻是 3 Ω，容抗是 4 Ω。電源電壓有效值是 10 V。電流有效值是多少 A？",
+    "unit": "A",
+    "diagram": {
+      "kind": "impedance",
+      "title": "串聯 RC",
+      "v": "10 V rms",
+      "parts": [
+        "3 Ω",
+        "−j4 Ω"
+      ]
+    }
+  },
+  {
+    "id": "ph-h-02",
+    "topic": "phasor",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "串聯電路的電阻是 6 Ω，感抗是 8 Ω。功率因數的數值是多少？電感負載請填落後的那個純數字。",
+    "unit": "—",
+    "notes": [
+      "電壓與電流使用有效值。功率因數只填數值。"
+    ]
+  },
+  {
+    "id": "oa-e-01",
+    "topic": "opamp",
+    "difficulty": "easy",
+    "type": "choice",
+    "prompt": "理想運算放大器工作在負回授、而且輸出還沒有飽和。兩個輸入端的電流怎麼處理？",
+    "choices": [
+      "都很大，因為開迴路增益無限大",
+      "都視為零",
+      "等於輸出電流",
+      "只有正輸入端可以流入電流"
+    ]
+  },
+  {
+    "id": "oa-e-02",
+    "topic": "opamp",
+    "difficulty": "easy",
+    "type": "numeric",
+    "prompt": "反相放大器的輸入電阻是 5 kΩ，回授電阻是 20 kΩ，輸入是 0.4 V。輸出電壓是多少 V？",
+    "unit": "V",
+    "notes": [
+      "正輸入端接地。輸出未飽和。"
+    ],
+    "diagram": {
+      "kind": "opamp",
+      "mode": "inv",
+      "title": "反相放大",
+      "rin": "5 kΩ",
+      "rf": "20 kΩ",
+      "vin": "0.4 V"
+    }
+  },
+  {
+    "id": "oa-m-01",
+    "topic": "opamp",
+    "difficulty": "medium",
+    "type": "numeric",
+    "prompt": "非反相放大器的接地電阻 Rg 是 1 kΩ，回授電阻 Rf 是 9 kΩ，輸入是 0.25 V。輸出電壓是多少 V？",
+    "unit": "V",
+    "notes": [
+      "輸出未飽和。"
+    ],
+    "diagram": {
+      "kind": "opamp",
+      "mode": "noninv",
+      "title": "非反相放大",
+      "rg": "1 kΩ",
+      "rf": "9 kΩ",
+      "vin": "0.25 V"
+    }
+  },
+  {
+    "id": "oa-m-02",
+    "topic": "opamp",
+    "difficulty": "medium",
+    "type": "numeric",
+    "prompt": "反相加法器的兩顆輸入電阻和回授電阻都是 10 kΩ。兩個輸入是 1 V 和 2 V。輸出電壓是多少 V？",
+    "unit": "V",
+    "notes": [
+      "正輸入端接地。輸出未飽和。"
+    ],
+    "diagram": {
+      "kind": "opamp",
+      "mode": "sum",
+      "title": "反相加法",
+      "rin": "各 10 kΩ",
+      "rf": "10 kΩ",
+      "inputs": [
+        "1 V",
+        "2 V"
+      ]
+    }
+  },
+  {
+    "id": "oa-h-01",
+    "topic": "opamp",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "差分放大器四顆電阻成對：輸入側各 10 kΩ，回授側與接地側各 20 kΩ。反相輸入是 1.2 V，非反相輸入是 1.5 V。輸出電壓是多少 V？",
+    "unit": "V",
+    "notes": [
+      "電阻比已經匹配。輸出未飽和。"
+    ],
+    "diagram": {
+      "kind": "opamp",
+      "mode": "diff",
+      "title": "差分放大",
+      "rin": "10 kΩ",
+      "rf": "20 kΩ",
+      "rg": "20 kΩ",
+      "v1": "1.2 V",
+      "v2": "1.5 V"
+    }
+  },
+  {
+    "id": "oa-h-02",
+    "topic": "opamp",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "想做一個增益為 −8 的反相放大器，輸入電阻已經選定 2 kΩ。回授電阻應該是多少 kΩ？",
+    "unit": "kΩ"
+  },
+  {
+    "id": "db-e-01",
+    "topic": "diode_bjt",
+    "difficulty": "easy",
+    "type": "choice",
+    "prompt": "用定壓降模型分析一般矽二極體時，順向導通的壓降通常取多少？",
+    "choices": [
+      "0 V，因為導通就等於短路",
+      "0.7 V",
+      "和反向崩潰電壓相同",
+      "一定是 5 V"
+    ]
+  },
+  {
+    "id": "db-e-02",
+    "topic": "diode_bjt",
+    "difficulty": "easy",
+    "type": "numeric",
+    "prompt": "5 V 電壓源、順向矽二極體和 430 Ω 電阻串成一個迴路。定壓降取 0.7 V。順向電流是多少 mA？",
+    "unit": "mA",
+    "diagram": {
+      "kind": "diode",
+      "title": "順向迴路",
+      "v": "5 V",
+      "vf": "0.7 V",
+      "r": "430 Ω"
+    }
+  },
+  {
+    "id": "db-m-01",
+    "topic": "diode_bjt",
+    "difficulty": "medium",
+    "type": "numeric",
+    "prompt": "12 V 經 220 Ω 接到一顆 Vz = 5.1 V 的齊納二極體，負載開路，而且二極體已在反向崩潰。齊納電流大約是多少 mA？可四捨五入到小數一位。",
+    "unit": "mA",
+    "notes": [
+      "假設電源電壓足以維持崩潰，並忽略齊納內阻。"
+    ],
+    "diagram": {
+      "kind": "zener",
+      "title": "無負載穩壓",
+      "v": "12 V",
+      "r": "220 Ω",
+      "vz": "5.1 V"
+    }
+  },
+  {
+    "id": "db-m-02",
+    "topic": "diode_bjt",
+    "difficulty": "medium",
+    "type": "choice",
+    "prompt": "矽 NPN 電晶體工作在作用區時，哪一個描述適當？",
+    "choices": [
+      "基極電流為零，而且 VBE 也是零",
+      "Ic = β Ib，矽晶體的 VBE 約 0.7 V",
+      "集極和射極短路，VCE 一定是零",
+      "集極電流和基極電流沒有關係"
+    ]
+  },
+  {
+    "id": "db-h-01",
+    "topic": "diode_bjt",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "NPN 射極接地，VCC = 12 V，Rc = 2.2 kΩ，β = 100，Ib = 20 µA。若它留在作用區，VCE 是多少 V？",
+    "unit": "V",
+    "notes": [
+      "忽略 Early 效應。射極直接接地，集極只有 Rc。"
+    ],
+    "diagram": {
+      "kind": "bjt",
+      "title": "固定基極電流",
+      "vcc": "12 V",
+      "rb": "Ib = 20 µA",
+      "rc": "2.2 kΩ",
+      "beta": "β = 100"
+    }
+  },
+  {
+    "id": "db-h-02",
+    "topic": "diode_bjt",
+    "difficulty": "hard",
+    "type": "numeric",
+    "prompt": "NPN 固定偏壓：VCC = 9 V，基極電阻 Rb = 830 kΩ，射極接地，VBE 取 0.7 V。基極電流是多少 µA？",
+    "unit": "µA",
+    "notes": [
+      "假設電晶體已導通，集極回路不影響這條基極算法。"
+    ]
+  }
+]

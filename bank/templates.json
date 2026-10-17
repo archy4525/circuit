@@ -1,0 +1,5021 @@
+[
+  {
+    "id": "bas-forward",
+    "topic": "basics",
+    "difficulty": "easy",
+    "thinking": "forward",
+    "type": "numeric",
+    "model": "constant_current_delivery",
+    "connection": "電荷以固定速率通過充電路徑，中間沒有分路。",
+    "assumptions": [
+      "觀察期間電流維持定值",
+      "只計算這一條路徑送出的淨電荷"
+    ],
+    "source_ids": [
+      "aac_vi",
+      "nycu_ch1"
+    ],
+    "variables": [
+      {
+        "name": "Q",
+        "values": [
+          2,
+          4,
+          6,
+          8
+        ]
+      },
+      {
+        "name": "t",
+        "values": [
+          2,
+          4,
+          5,
+          10
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "I_A",
+        "formula": "Q / t"
+      },
+      {
+        "name": "I_mA",
+        "formula": "Q / t * 1000"
+      }
+    ],
+    "answer_formula": "I_mA",
+    "unit": "mA",
+    "scenarios": [
+      {
+        "id": "pack",
+        "model": "constant_current_delivery",
+        "prompt": "行動電源在 {t} s 內以定電流送出 {Q} C。充電電流是多少 mA？",
+        "conditions": [
+          "送出的電荷是 {Q} C",
+          "時間是 {t} s"
+        ]
+      },
+      {
+        "id": "lamp",
+        "model": "constant_current_delivery",
+        "prompt": "手電筒的充電座在 {t} s 內把 {Q} C 送進電池。這段時間的電流是多少 mA？",
+        "conditions": [
+          "電荷 {Q} C",
+          "時間 {t} s，電流大小不變"
+        ]
+      }
+    ],
+    "steps": [
+      "穩定電流用 I = Q / t。",
+      "電荷 {Q} C，時間 {t} s。",
+      "I = {Q} / {t} = {I_A} A = {I_mA} mA。"
+    ],
+    "substitution": "I = {Q} / {t} = {I_mA} mA",
+    "unit_check": "庫侖除以秒是安培，再乘 1000 成為毫安。",
+    "common_mistakes": [
+      "把時間除以電荷。",
+      "算出安培後沒有換成毫安。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "bas-compare",
+    "topic": "basics",
+    "difficulty": "easy",
+    "thinking": "compare",
+    "type": "choice",
+    "model": "compare_two_constant_currents",
+    "connection": "兩條充電路徑各自維持定電流，時間相同，彼此沒有匯流。",
+    "assumptions": [
+      "兩條路徑的電流都維持定值",
+      "比較的是同一段時間送出的電荷"
+    ],
+    "source_ids": [
+      "aac_vi",
+      "nycu_ch1"
+    ],
+    "variables": [
+      {
+        "name": "I1",
+        "values": [
+          0.4,
+          0.8,
+          1
+        ]
+      },
+      {
+        "name": "I2",
+        "values": [
+          0.2,
+          0.3
+        ]
+      },
+      {
+        "name": "t",
+        "values": [
+          10,
+          20
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Q1",
+        "formula": "I1 * t"
+      },
+      {
+        "name": "Q2",
+        "formula": "I2 * t"
+      }
+    ],
+    "constraints": [
+      "I1 - I2"
+    ],
+    "answer_formula": "I1",
+    "options": [
+      {
+        "text": "甲比較多，{t} s 內送出 {Q1} C",
+        "formula": "I1"
+      },
+      {
+        "text": "乙比較多，{t} s 內送出 {Q2} C",
+        "formula": "I2"
+      },
+      {
+        "text": "一樣多，因為時間都是 {t} s",
+        "formula": "0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "usb",
+        "model": "compare_two_constant_currents",
+        "prompt": "甲充電線維持 {I1} A，乙充電線維持 {I2} A，兩條都通電 {t} s。哪一條送出的電荷比較多？",
+        "conditions": [
+          "甲的電流 {I1} A",
+          "乙的電流 {I2} A",
+          "時間都是 {t} s"
+        ]
+      },
+      {
+        "id": "toys",
+        "model": "compare_two_constant_currents",
+        "prompt": "甲玩具的充電座維持 {I1} A，乙玩具的充電座維持 {I2} A，同樣充 {t} s。哪一個送進的電荷比較多？",
+        "conditions": [
+          "甲 {I1} A",
+          "乙 {I2} A",
+          "時間 {t} s"
+        ]
+      }
+    ],
+    "steps": [
+      "電荷 Q = I t，時間相同時電荷與電流成正比。",
+      "甲送出 {I1} × {t} = {Q1} C。",
+      "乙送出 {I2} × {t} = {Q2} C，所以甲比較多。"
+    ],
+    "substitution": "Q1 - Q2 = {Q1} - {Q2} C",
+    "unit_check": "安培乘秒是庫侖，兩邊用同一個單位才能比較。",
+    "common_mistakes": [
+      "只因為時間相同就說電荷相同。",
+      "把電流較小的那條當成送出較多電荷。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "bas-reverse",
+    "topic": "basics",
+    "difficulty": "medium",
+    "thinking": "reverse",
+    "type": "numeric",
+    "model": "charge_from_steady_current",
+    "connection": "負載電流維持定值，電荷沿同一條路徑累積。",
+    "assumptions": [
+      "電流在這段時間內不變",
+      "沒有另外的漏電路徑"
+    ],
+    "source_ids": [
+      "aac_vi",
+      "nycu_ch1"
+    ],
+    "variables": [
+      {
+        "name": "I",
+        "values": [
+          0.2,
+          0.5,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "t",
+        "values": [
+          2,
+          4,
+          5,
+          10
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Q",
+        "formula": "I * t"
+      }
+    ],
+    "answer_formula": "Q",
+    "unit": "C",
+    "scenarios": [
+      {
+        "id": "car",
+        "model": "charge_from_steady_current",
+        "prompt": "玩具車馬達維持 {I} A 運轉 {t} s。電池送出的電荷是多少 C？",
+        "conditions": [
+          "電流 {I} A",
+          "時間 {t} s"
+        ]
+      },
+      {
+        "id": "lamp",
+        "model": "charge_from_steady_current",
+        "prompt": "桌燈在本題維持 {I} A，點亮 {t} s。通過燈絲的電荷是多少 C？",
+        "conditions": [
+          "本題已給定電流 {I} A",
+          "時間 {t} s"
+        ]
+      }
+    ],
+    "steps": [
+      "電流固定時，Q = I t。",
+      "電流 {I} A，時間 {t} s。",
+      "Q = {I} × {t} = {Q} C。"
+    ],
+    "substitution": "Q = {I} * {t} = {Q} C",
+    "unit_check": "安培乘秒得到庫侖。",
+    "common_mistakes": [
+      "用電流除以時間。",
+      "把毫安直接乘秒，卻把答案當成庫侖。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "bas-predict",
+    "topic": "basics",
+    "difficulty": "medium",
+    "thinking": "predict",
+    "type": "numeric",
+    "model": "charge_when_time_changes",
+    "connection": "同一條路徑的電流不變，只把觀察時間改長。",
+    "assumptions": [
+      "電流維持原來的定值",
+      "沒有新增或拿掉負載"
+    ],
+    "source_ids": [
+      "aac_vi",
+      "nycu_ch1"
+    ],
+    "variables": [
+      {
+        "name": "I",
+        "values": [
+          0.2,
+          0.5,
+          1
+        ]
+      },
+      {
+        "name": "t1",
+        "values": [
+          2,
+          4
+        ]
+      },
+      {
+        "name": "t2",
+        "values": [
+          8,
+          10
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Q1",
+        "formula": "I * t1"
+      },
+      {
+        "name": "Q2",
+        "formula": "I * t2"
+      }
+    ],
+    "constraints": [
+      "t2 - t1"
+    ],
+    "answer_formula": "Q2",
+    "unit": "C",
+    "scenarios": [
+      {
+        "id": "pack",
+        "model": "charge_when_time_changes",
+        "prompt": "行動電源以 {I} A 輸出。原本記錄 {t1} s，現在改記錄 {t2} s，電流不變。新的送出電荷是多少 C？",
+        "conditions": [
+          "電流維持 {I} A",
+          "原時間 {t1} s",
+          "新時間 {t2} s"
+        ]
+      },
+      {
+        "id": "car",
+        "model": "charge_when_time_changes",
+        "prompt": "玩具車維持 {I} A。行駛時間從 {t1} s 改成 {t2} s，電流沒有變。電池送出的電荷變成多少 C？",
+        "conditions": [
+          "電流 {I} A",
+          "原來 {t1} s",
+          "後來 {t2} s"
+        ]
+      }
+    ],
+    "steps": [
+      "電荷與時間成正比，Q = I t。",
+      "原來是 {I} × {t1} = {Q1} C。",
+      "時間改成 {t2} s 後，Q = {I} × {t2} = {Q2} C。"
+    ],
+    "substitution": "Q2 = {I} * {t2} = {Q2} C",
+    "unit_check": "安培乘秒仍是庫侖。",
+    "common_mistakes": [
+      "時間變長時把電流也一起改掉。",
+      "用新時間去除電流。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "bas-error",
+    "topic": "basics",
+    "difficulty": "hard",
+    "thinking": "error",
+    "type": "choice",
+    "model": "current_definition_check",
+    "connection": "單一路徑、定電流，沒有其他電源。",
+    "assumptions": [
+      "電荷與時間都已給定",
+      "電流定義是電荷除以時間"
+    ],
+    "source_ids": [
+      "aac_vi",
+      "nycu_ch1"
+    ],
+    "variables": [
+      {
+        "name": "Q",
+        "values": [
+          6,
+          8,
+          10
+        ]
+      },
+      {
+        "name": "t",
+        "values": [
+          2,
+          4
+        ]
+      }
+    ],
+    "constraints": [
+      "Q - t"
+    ],
+    "derived": [
+      {
+        "name": "I",
+        "formula": "Q / t"
+      },
+      {
+        "name": "inv",
+        "formula": "t / Q"
+      },
+      {
+        "name": "sm",
+        "formula": "Q + t"
+      }
+    ],
+    "answer_formula": "Q / t",
+    "options": [
+      {
+        "text": "正確是 {I} A；同學把電荷和時間的位置對調了",
+        "formula": "Q / t"
+      },
+      {
+        "text": "同學是對的，電流就是 {inv} A",
+        "formula": "t / Q"
+      },
+      {
+        "text": "正確算法是把兩個數相加，得到 {sm} A",
+        "formula": "Q + t"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "torch",
+        "model": "current_definition_check",
+        "prompt": "手電筒在 {t} s 內通過燈絲 {Q} C。同學寫成 I = {t} / {Q} A。哪一個說法正確？",
+        "conditions": [
+          "電荷 {Q} C",
+          "時間 {t} s"
+        ]
+      },
+      {
+        "id": "usb",
+        "model": "current_definition_check",
+        "prompt": "USB 充電線在 {t} s 內送出 {Q} C。同學用時間除以電荷。哪一個說法正確？",
+        "conditions": [
+          "電荷 {Q} C",
+          "時間 {t} s"
+        ]
+      }
+    ],
+    "steps": [
+      "電流的定義是 I = Q / t。",
+      "同學寫成 t / Q，分子分母相反。",
+      "I = {Q} / {t} = {I} A。"
+    ],
+    "substitution": "I = {Q} / {t} = {I} A",
+    "unit_check": "庫侖除以秒才是安培。秒除以庫侖不是電流。",
+    "common_mistakes": [
+      "沿用同學把時間放在分子的式子。",
+      "把電荷和時間相加。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "bas-fault",
+    "topic": "basics",
+    "difficulty": "hard",
+    "thinking": "fault",
+    "type": "choice",
+    "model": "open_charge_path",
+    "connection": "負載與開關串成一條路徑。健康時應有定電流，現在電荷讀數停在 0。",
+    "assumptions": [
+      "電壓源仍然接著",
+      "量到的淨電荷是 0，表示沒有電荷通過截面"
+    ],
+    "source_ids": [
+      "aac_resistance",
+      "aac_vi",
+      "nycu_ch1"
+    ],
+    "variables": [
+      {
+        "name": "I",
+        "values": [
+          0.5,
+          1
+        ]
+      },
+      {
+        "name": "t",
+        "values": [
+          10,
+          20
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Qh",
+        "formula": "I * t"
+      }
+    ],
+    "answer_formula": "1",
+    "options": [
+      {
+        "text": "路徑開路，所以 {t} s 內電荷仍是 0 C",
+        "formula": "1"
+      },
+      {
+        "text": "負載短路，所以電荷應是健康時的 {Qh} C",
+        "formula": "0"
+      },
+      {
+        "text": "電流加倍，電荷變成 {Qh} C 的兩倍",
+        "formula": "2"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "torch",
+        "model": "open_charge_path",
+        "prompt": "手電筒健康時電流約 {I} A。現在開關按下 {t} s，通過燈絲的電荷仍是 0 C，燈也不亮。哪一種故障符合？",
+        "conditions": [
+          "健康時電流約 {I} A",
+          "這次累積電荷 0 C",
+          "觀察時間 {t} s"
+        ]
+      },
+      {
+        "id": "usb",
+        "model": "open_charge_path",
+        "prompt": "USB 線健康時可送出約 {I} A。插上 {t} s 後電荷計數仍是 0 C，負載端沒有電流。哪一種故障符合？",
+        "conditions": [
+          "健康電流約 {I} A",
+          "實測電荷 0 C",
+          "時間 {t} s"
+        ]
+      }
+    ],
+    "steps": [
+      "電荷維持 0，表示沒有電荷通過那個截面。",
+      "開路時電流是 0，Q = 0 × t = 0。",
+      "短路會讓電流變大，不會讓電荷停在 0。"
+    ],
+    "substitution": "Q = 0 * {t} = 0 C",
+    "unit_check": "開路電流是 0 A，乘上秒數後電荷仍是 0 C。",
+    "common_mistakes": [
+      "把不亮看成短路。",
+      "用健康電流去算這次實際送出的電荷。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "ohm-forward",
+    "topic": "ohm_power",
+    "difficulty": "easy",
+    "thinking": "forward",
+    "type": "numeric",
+    "model": "resistive_appliance_power",
+    "connection": "直流電壓源直接跨在單一電阻性負載上。",
+    "assumptions": [
+      "負載在本題看成定值電阻",
+      "不是 LED，也沒有反電動勢",
+      "導線與電源內阻忽略"
+    ],
+    "source_ids": [
+      "aac_power",
+      "aac_ohm",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "V",
+        "values": [
+          6,
+          12,
+          24
+        ]
+      },
+      {
+        "name": "R",
+        "values": [
+          6,
+          8,
+          12
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "P",
+        "formula": "V * V / R"
+      }
+    ],
+    "answer_formula": "P",
+    "unit": "W",
+    "scenarios": [
+      {
+        "id": "lamp",
+        "model": "resistive_appliance_power",
+        "prompt": "桌燈接到 {V} V 直流電源。本題把燈絲看成 {R} Ω 的定值電阻，不使用溫度曲線。燈的功率是多少 W？",
+        "conditions": [
+          "電源 {V} V",
+          "燈絲 {R} Ω"
+        ]
+      },
+      {
+        "id": "heater",
+        "model": "resistive_appliance_power",
+        "prompt": "小型電暖片接到 {V} V。本題把發熱體看成 {R} Ω 的純電阻。功率是多少 W？",
+        "conditions": [
+          "電源 {V} V",
+          "發熱體 {R} Ω"
+        ]
+      }
+    ],
+    "diagram": {
+      "kind": "series",
+      "title": "電阻性負載",
+      "parts": [
+        {
+          "sym": "v",
+          "name": "{V} V"
+        },
+        {
+          "sym": "r",
+          "name": "{R} Ω"
+        }
+      ]
+    },
+    "steps": [
+      "電阻性負載的功率 P = V² / R。",
+      "電壓 {V} V，電阻 {R} Ω。",
+      "P = {V}² / {R} = {P} W。"
+    ],
+    "substitution": "P = {V} * {V} / {R} = {P} W",
+    "unit_check": "伏特的平方除以歐姆是瓦特。",
+    "common_mistakes": [
+      "用 V / R 當功率，那是電流。",
+      "把這個負載當成有順向壓降的 LED。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "ohm-compare",
+    "topic": "ohm_power",
+    "difficulty": "easy",
+    "thinking": "compare",
+    "type": "choice",
+    "model": "compare_two_lamps",
+    "connection": "兩盞燈並聯在同一個直流電壓上，各自是獨立的定值電阻。",
+    "assumptions": [
+      "兩盞都是純電阻燈絲",
+      "電源電壓相同且內阻忽略"
+    ],
+    "source_ids": [
+      "aac_power",
+      "aac_parallel",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "V",
+        "values": [
+          12
+        ]
+      },
+      {
+        "name": "R1",
+        "values": [
+          6,
+          8
+        ]
+      },
+      {
+        "name": "R2",
+        "values": [
+          12,
+          24
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "P1",
+        "formula": "V * V / R1"
+      },
+      {
+        "name": "P2",
+        "formula": "V * V / R2"
+      }
+    ],
+    "constraints": [
+      "R2 - R1"
+    ],
+    "answer_formula": "V * V / R1",
+    "options": [
+      {
+        "text": "甲較亮，功率 {P1} W",
+        "formula": "V * V / R1"
+      },
+      {
+        "text": "乙較亮，功率 {P2} W",
+        "formula": "V * V / R2"
+      },
+      {
+        "text": "一樣亮，因為電壓都是 {V} V",
+        "formula": "0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "lamps",
+        "model": "compare_two_lamps",
+        "prompt": "甲桌燈 {R1} Ω、乙桌燈 {R2} Ω，都接到 {V} V，而且都看成定值電阻。哪一盞功率比較大？",
+        "conditions": [
+          "電壓都是 {V} V",
+          "甲 {R1} Ω",
+          "乙 {R2} Ω"
+        ]
+      },
+      {
+        "id": "heaters",
+        "model": "compare_two_lamps",
+        "prompt": "兩片電暖片都接 {V} V。甲是 {R1} Ω，乙是 {R2} Ω，都是純電阻。哪一片功率比較大？",
+        "conditions": [
+          "電壓 {V} V",
+          "甲 {R1} Ω",
+          "乙 {R2} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "同一電壓下，P = V² / R，電阻較小的功率較大。",
+      "甲是 {V}² / {R1} = {P1} W。",
+      "乙是 {V}² / {R2} = {P2} W，所以甲比較大。"
+    ],
+    "substitution": "P1 = {V} * {V} / {R1} = {P1} W",
+    "unit_check": "兩邊都是瓦特。",
+    "common_mistakes": [
+      "認為電壓相同功率就相同。",
+      "認為電阻大的比較亮。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "ohm-reverse",
+    "topic": "ohm_power",
+    "difficulty": "medium",
+    "thinking": "reverse",
+    "type": "numeric",
+    "model": "resistive_appliance_from_power",
+    "connection": "交流電源直接供給一個純電阻負載，用有效值計算。",
+    "assumptions": [
+      "電壓與功率都是有效值",
+      "負載看成純電阻，功率因數為 1",
+      "電阻在這次計算中不變"
+    ],
+    "source_ids": [
+      "aac_power",
+      "aac_ohm",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "V",
+        "values": [
+          110,
+          220
+        ]
+      },
+      {
+        "name": "P",
+        "values": [
+          550,
+          1100
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "R",
+        "formula": "V * V / P"
+      }
+    ],
+    "answer_formula": "R",
+    "unit": "Ω",
+    "scenarios": [
+      {
+        "id": "kettle",
+        "model": "resistive_appliance_from_power",
+        "prompt": "電熱水壺接在有效值 {V} V 的電源上，銘牌功率 {P} W。本題把水壺看成純電阻。等效電阻是多少 Ω？",
+        "conditions": [
+          "有效值電壓 {V} V",
+          "功率 {P} W"
+        ]
+      },
+      {
+        "id": "toaster",
+        "model": "resistive_appliance_from_power",
+        "prompt": "烤麵包機的有效值電壓是 {V} V，功率 {P} W。本題把加熱線看成純電阻。等效電阻是多少 Ω？",
+        "conditions": [
+          "有效值電壓 {V} V",
+          "功率 {P} W"
+        ]
+      }
+    ],
+    "steps": [
+      "由 P = V² / R 反求 R = V² / P。",
+      "電壓 {V} V，功率 {P} W。",
+      "R = {V}² / {P} = {R} Ω。"
+    ],
+    "substitution": "R = {V} * {V} / {P} = {R} Ω",
+    "unit_check": "伏特平方除以瓦特是歐姆。",
+    "common_mistakes": [
+      "用 P / V，得到的是電流。",
+      "把熱水壺當成含電抗的馬達。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "ohm-predict",
+    "topic": "ohm_power",
+    "difficulty": "medium",
+    "thinking": "predict",
+    "type": "numeric",
+    "model": "dc_motor_stall",
+    "connection": "電池、電樞電阻與反電動勢串成一條迴路。卡住後反電動勢改為 0。",
+    "assumptions": [
+      "使用直流馬達穩態模型",
+      "卡住時反電動勢變成 0",
+      "電池電壓與電樞電阻不變",
+      "不把整顆馬達當成單一電阻"
+    ],
+    "source_ids": [
+      "aac_ohm",
+      "aac_kvl",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "V",
+        "values": [
+          6,
+          9,
+          12
+        ]
+      },
+      {
+        "name": "E",
+        "values": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "R",
+        "values": [
+          2,
+          3
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Irun",
+        "formula": "(V - E) / R"
+      },
+      {
+        "name": "Istall",
+        "formula": "V / R"
+      }
+    ],
+    "constraints": [
+      "V - E - 1"
+    ],
+    "answer_formula": "Istall",
+    "unit": "A",
+    "scenarios": [
+      {
+        "id": "car",
+        "model": "dc_motor_stall",
+        "prompt": "玩具車電池 {V} V。正常行駛時反電動勢 {E} V、電樞電阻 {R} Ω，電流是 {Irun} A。車輪卡住後反電動勢變成 0 V，電池與電阻不變。卡住時的電流是多少 A？",
+        "conditions": [
+          "電池 {V} V",
+          "行駛時反電動勢 {E} V",
+          "電樞電阻 {R} Ω"
+        ]
+      },
+      {
+        "id": "boat",
+        "model": "dc_motor_stall",
+        "prompt": "遙控船馬達由 {V} V 供電，電樞電阻 {R} Ω。航行時反電動勢 {E} V。螺旋槳卡住後反電動勢降為 0 V。這時電流是多少 A？",
+        "conditions": [
+          "電源 {V} V",
+          "航行時反電動勢 {E} V",
+          "電樞電阻 {R} Ω"
+        ]
+      }
+    ],
+    "diagram": {
+      "kind": "series",
+      "title": "馬達卡住",
+      "parts": [
+        {
+          "sym": "v",
+          "name": "{V} V"
+        },
+        {
+          "sym": "r",
+          "name": "{R} Ω"
+        }
+      ],
+      "caption": "反電動勢已變成 0"
+    },
+    "steps": [
+      "穩態迴路是 V = E + I R。",
+      "卡住後 E = 0，所以 I = V / R。",
+      "I = {V} / {R} = {Istall} A。行駛時則是 {Irun} A。"
+    ],
+    "substitution": "I = ({V} - 0) / {R} = {Istall} A",
+    "unit_check": "伏特除以歐姆是安培。",
+    "common_mistakes": [
+      "電流維持行駛時的 {Irun} A。",
+      "把反電動勢和電池電壓相加。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "ohm-error",
+    "topic": "ohm_power",
+    "difficulty": "hard",
+    "thinking": "error",
+    "type": "choice",
+    "model": "power_formula_check",
+    "connection": "直流電壓直接加在定值電阻燈絲上。",
+    "assumptions": [
+      "燈絲是線性電阻",
+      "同學把電流的數值當成功率"
+    ],
+    "source_ids": [
+      "aac_power",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "V",
+        "values": [
+          12
+        ]
+      },
+      {
+        "name": "R",
+        "values": [
+          8,
+          6
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "P",
+        "formula": "V * V / R"
+      },
+      {
+        "name": "I",
+        "formula": "V / R"
+      },
+      {
+        "name": "prod",
+        "formula": "V * R"
+      }
+    ],
+    "answer_formula": "V * V / R",
+    "options": [
+      {
+        "text": "正確功率是 {P} W；同學把 V/R 的電流當成瓦特",
+        "formula": "V * V / R"
+      },
+      {
+        "text": "同學是對的，功率就是 {I} W",
+        "formula": "V / R"
+      },
+      {
+        "text": "正確式子是電壓乘電阻，得到 {prod} W",
+        "formula": "V * R"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "lamp",
+        "model": "power_formula_check",
+        "prompt": "桌燈 {V} V，燈絲看成 {R} Ω。同學說功率是 {V}/{R} = {I} W。哪一個說法正確？",
+        "conditions": [
+          "電壓 {V} V",
+          "電阻 {R} Ω"
+        ]
+      },
+      {
+        "id": "heater",
+        "model": "power_formula_check",
+        "prompt": "電暖片 {V} V，純電阻 {R} Ω。同學用電壓除以電阻當作功率。哪一個說法正確？",
+        "conditions": [
+          "電壓 {V} V",
+          "電阻 {R} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "功率要用 P = V² / R，或先求電流再乘電壓。",
+      "V/R = {I} A，是電流不是功率。",
+      "P = {V}² / {R} = {P} W。"
+    ],
+    "substitution": "P = {V} * {V} / {R} = {P} W",
+    "unit_check": "伏特除以歐姆是安培。瓦特要再乘一次伏特。",
+    "common_mistakes": [
+      "接受同學的 {I} W。",
+      "用電壓乘電阻當功率。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "ohm-fault",
+    "topic": "ohm_power",
+    "difficulty": "hard",
+    "thinking": "fault",
+    "type": "choice",
+    "model": "open_filament",
+    "connection": "電源仍接到燈座，燈絲本身是負載。",
+    "assumptions": [
+      "插座電壓仍然存在",
+      "電流計讀到 0",
+      "燈絲電阻量測為開路"
+    ],
+    "source_ids": [
+      "aac_resistance",
+      "aac_ohm",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "V",
+        "values": [
+          12,
+          110
+        ]
+      },
+      {
+        "name": "R",
+        "values": [
+          8,
+          11
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "I",
+        "formula": "V / R"
+      }
+    ],
+    "answer_formula": "1",
+    "options": [
+      {
+        "text": "燈絲開路，所以電流是 0 A，不是健康時的 {I} A",
+        "formula": "1"
+      },
+      {
+        "text": "燈絲短路，電流應遠大於 {I} A",
+        "formula": "0"
+      },
+      {
+        "text": "燈仍在消耗 {I} W",
+        "formula": "2"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "lamp",
+        "model": "open_filament",
+        "prompt": "桌燈插座仍有 {V} V。健康燈絲是 {R} Ω，可有約 {I} A。現在燈不亮、電流是 0 A，燈絲量到開路。哪一種故障符合？",
+        "conditions": [
+          "插座電壓 {V} V",
+          "健康燈絲 {R} Ω"
+        ]
+      },
+      {
+        "id": "kettle",
+        "model": "open_filament",
+        "prompt": "電熱水壺的電源端仍有 {V} V。健康時加熱線約 {R} Ω。現在電流是 0 A，加熱線呈開路。哪一種故障符合？",
+        "conditions": [
+          "電源 {V} V",
+          "健康電阻約 {R} Ω",
+          "本題原本把水壺看成純電阻"
+        ]
+      }
+    ],
+    "steps": [
+      "電流為 0 而電壓仍在，負載沒有形成閉路。",
+      "開路燈絲不會流過健康時的 V/R。",
+      "短路會使電流變大，而且電阻不會量成開路。"
+    ],
+    "substitution": "I = 0 A，健康時才是 {V} / {R} = {I} A",
+    "unit_check": "開路電流是 0 A。健康電流的單位才是安培。",
+    "common_mistakes": [
+      "看到有電壓就用 V/R 計算現在的電流。",
+      "把不加熱看成加熱線短路。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "sp-forward",
+    "topic": "series_parallel",
+    "difficulty": "easy",
+    "thinking": "forward",
+    "type": "numeric",
+    "model": "series_lamp_string",
+    "connection": "兩顆燈泡與電源串成單一迴路，沒有並聯分路。",
+    "assumptions": [
+      "每顆燈泡都看成定值電阻",
+      "導線電阻忽略"
+    ],
+    "source_ids": [
+      "aac_sp",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "R1",
+        "values": [
+          6,
+          8,
+          10
+        ]
+      },
+      {
+        "name": "R2",
+        "values": [
+          6,
+          10,
+          12
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Req",
+        "formula": "R1 + R2"
+      }
+    ],
+    "answer_formula": "Req",
+    "unit": "Ω",
+    "scenarios": [
+      {
+        "id": "torch",
+        "model": "series_lamp_string",
+        "prompt": "手電筒裡兩顆燈泡串聯，本題分別看成 {R1} Ω 與 {R2} Ω。燈串的等效電阻是多少 Ω？",
+        "conditions": [
+          "第一顆 {R1} Ω",
+          "第二顆 {R2} Ω"
+        ]
+      },
+      {
+        "id": "tree",
+        "model": "series_lamp_string",
+        "prompt": "小型燈串的兩顆燈泡串在同一條迴路，電阻是 {R1} Ω 與 {R2} Ω。等效電阻是多少 Ω？",
+        "conditions": [
+          "第一顆 {R1} Ω",
+          "第二顆 {R2} Ω"
+        ]
+      }
+    ],
+    "diagram": {
+      "kind": "series",
+      "title": "串聯燈",
+      "parts": [
+        {
+          "sym": "r",
+          "name": "{R1} Ω"
+        },
+        {
+          "sym": "r",
+          "name": "{R2} Ω"
+        }
+      ]
+    },
+    "steps": [
+      "串聯電阻的電流相同，電阻相加。",
+      "兩顆分別是 {R1} Ω 與 {R2} Ω。",
+      "Req = {R1} + {R2} = {Req} Ω。"
+    ],
+    "substitution": "Req = {R1} + {R2} = {Req} Ω",
+    "unit_check": "歐姆相加後仍是歐姆。",
+    "common_mistakes": [
+      "用並聯公式。",
+      "只留下其中一顆的電阻。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "sp-compare",
+    "topic": "series_parallel",
+    "difficulty": "easy",
+    "thinking": "compare",
+    "type": "choice",
+    "model": "flashlight_battery_arrangement",
+    "connection": "同一顆燈泡分別接到兩種電池組合：兩顆串聯，或兩顆並聯。",
+    "assumptions": [
+      "燈泡是定值電阻",
+      "電池是理想電壓源，內阻忽略",
+      "比較的是這一刻的電功率"
+    ],
+    "source_ids": [
+      "aac_sp",
+      "aac_power",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Vb",
+        "values": [
+          1.5
+        ]
+      },
+      {
+        "name": "R",
+        "values": [
+          10,
+          15
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Ps",
+        "formula": "(2 * Vb) * (2 * Vb) / R"
+      },
+      {
+        "name": "Pp",
+        "formula": "Vb * Vb / R"
+      }
+    ],
+    "answer_formula": "(2 * Vb) * (2 * Vb) / R",
+    "options": [
+      {
+        "text": "甲較亮，兩顆電池串聯，功率 {Ps} W",
+        "formula": "(2 * Vb) * (2 * Vb) / R"
+      },
+      {
+        "text": "乙較亮，兩顆電池並聯，功率 {Pp} W",
+        "formula": "Vb * Vb / R"
+      },
+      {
+        "text": "一樣亮，因為電池容量沒有給",
+        "formula": "0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "torch",
+        "model": "flashlight_battery_arrangement",
+        "prompt": "兩支手電筒用同一種燈泡，本題看成 {R} Ω。每顆電池 {Vb} V，內阻忽略。甲把兩顆電池串聯，乙把兩顆並聯。哪一支的燈泡功率比較大？",
+        "conditions": [
+          "燈泡 {R} Ω",
+          "每顆電池 {Vb} V"
+        ]
+      },
+      {
+        "id": "lantern",
+        "model": "flashlight_battery_arrangement",
+        "prompt": "兩盞露營燈的燈泡都看成 {R} Ω，電池每顆 {Vb} V。甲用兩顆串聯，乙用兩顆並聯。哪一盞功率比較大？",
+        "conditions": [
+          "燈泡 {R} Ω",
+          "電池 {Vb} V"
+        ]
+      }
+    ],
+    "steps": [
+      "串聯時燈泡電壓是 2 × {Vb} V，功率 {Ps} W。",
+      "並聯時電壓仍是 {Vb} V，功率 {Pp} W。",
+      "串聯的功率是並聯的 4 倍，所以甲比較大。電池容量影響能用多久。"
+    ],
+    "substitution": "Ps = (2 * {Vb}) * (2 * {Vb}) / {R} = {Ps} W",
+    "unit_check": "兩次結果都是瓦特。",
+    "common_mistakes": [
+      "以為並聯會把電流加進同一顆燈泡。",
+      "沒有電池的 mAh 就認為不能比較功率。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "sp-reverse",
+    "topic": "series_parallel",
+    "difficulty": "medium",
+    "thinking": "reverse",
+    "type": "numeric",
+    "model": "find_parallel_partner",
+    "connection": "兩台純電阻電器並聯，總等效電阻與其中一台已經知道。",
+    "assumptions": [
+      "兩台都是定值電阻",
+      "沒有第三條支路"
+    ],
+    "source_ids": [
+      "aac_parallel",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "R1",
+        "values": [
+          200,
+          300,
+          600
+        ]
+      },
+      {
+        "name": "Req",
+        "values": [
+          100,
+          150
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "R2",
+        "formula": "R1 * Req / (R1 - Req)"
+      }
+    ],
+    "constraints": [
+      "R1 - Req"
+    ],
+    "answer_formula": "R2",
+    "unit": "Ω",
+    "scenarios": [
+      {
+        "id": "strip",
+        "model": "find_parallel_partner",
+        "prompt": "延長線上兩台小電器並聯，總等效電阻量到 {Req} Ω。一台暖腳器是 {R1} Ω 的純電阻。另一台也看成純電阻，它是多少 Ω？",
+        "conditions": [
+          "總電阻 {Req} Ω",
+          "已知的一台 {R1} Ω"
+        ]
+      },
+      {
+        "id": "lamps",
+        "model": "find_parallel_partner",
+        "prompt": "兩盞並聯桌燈的總電阻是 {Req} Ω，其中一盞是 {R1} Ω。另一盞的燈絲電阻是多少 Ω？",
+        "conditions": [
+          "總電阻 {Req} Ω",
+          "已知燈絲 {R1} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "並聯時 1/Req = 1/R1 + 1/R2。",
+      "所以 R2 = R1 × Req / (R1 − Req)。",
+      "R2 = {R1} × {Req} / ({R1} − {Req}) = {R2} Ω。"
+    ],
+    "substitution": "R2 = {R1} * {Req} / ({R1} - {Req}) = {R2} Ω",
+    "unit_check": "電阻的組合結果仍是歐姆。",
+    "common_mistakes": [
+      "用 Req 減掉 R1。",
+      "把兩台當成串聯。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "sp-predict",
+    "topic": "series_parallel",
+    "difficulty": "medium",
+    "thinking": "predict",
+    "type": "numeric",
+    "model": "parallel_one_branch_doubled",
+    "connection": "兩盞燈並聯在同一電壓上。其中一盞的電阻變成原來的 2 倍。",
+    "assumptions": [
+      "兩盞原本都是定值電阻",
+      "電源電壓不變",
+      "只有乙盞的電阻加倍"
+    ],
+    "source_ids": [
+      "aac_parallel",
+      "aac_ohm",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "V",
+        "values": [
+          12
+        ]
+      },
+      {
+        "name": "R1",
+        "values": [
+          100,
+          120
+        ]
+      },
+      {
+        "name": "R2",
+        "values": [
+          100,
+          150
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Inew",
+        "formula": "(V / R1 + V / (2 * R2)) * 1000"
+      }
+    ],
+    "answer_formula": "Inew",
+    "unit": "mA",
+    "scenarios": [
+      {
+        "id": "lamps",
+        "model": "parallel_one_branch_doubled",
+        "prompt": "甲燈 {R1} Ω、乙燈 {R2} Ω 並聯在 {V} V。乙燈燈絲老化後電阻變成 {R2} Ω 的 2 倍，甲燈與電壓不變。電源送出的總電流變成多少 mA？",
+        "conditions": [
+          "電壓 {V} V",
+          "甲燈 {R1} Ω",
+          "乙燈原本 {R2} Ω"
+        ]
+      },
+      {
+        "id": "heaters",
+        "model": "parallel_one_branch_doubled",
+        "prompt": "兩片純電阻電暖片並聯在 {V} V，電阻 {R1} Ω 與 {R2} Ω。第二片改成 2 倍電阻。總電流變成多少 mA？",
+        "conditions": [
+          "電壓 {V} V",
+          "第一片 {R1} Ω",
+          "第二片原本 {R2} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "並聯總電流是兩條支路電流相加。",
+      "乙燈電阻加倍後，它的電流變成原來的一半。",
+      "I = {V}/{R1} + {V}/(2×{R2}) = {Inew} mA。"
+    ],
+    "substitution": "I = {V} / {R1} + {V} / (2 * {R2}) = {Inew} mA",
+    "unit_check": "安培乘 1000 是毫安。",
+    "common_mistakes": [
+      "兩條支路的電阻都加倍。",
+      "電壓也跟著改變。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "sp-error",
+    "topic": "series_parallel",
+    "difficulty": "hard",
+    "thinking": "error",
+    "type": "choice",
+    "model": "parallel_formula_check",
+    "connection": "兩顆電阻並聯，沒有串聯元件。",
+    "assumptions": [
+      "同學把並聯電阻直接相加"
+    ],
+    "source_ids": [
+      "aac_parallel",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "R1",
+        "values": [
+          100,
+          200
+        ]
+      },
+      {
+        "name": "R2",
+        "values": [
+          100,
+          300
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Rp",
+        "formula": "1 / (1 / R1 + 1 / R2)"
+      },
+      {
+        "name": "sm",
+        "formula": "R1 + R2"
+      }
+    ],
+    "answer_formula": "1 / (1 / R1 + 1 / R2)",
+    "options": [
+      {
+        "text": "正確是 {Rp} Ω；同學不該把並聯電阻相加",
+        "formula": "1 / (1 / R1 + 1 / R2)"
+      },
+      {
+        "text": "同學是對的，等效電阻是 {sm} Ω",
+        "formula": "R1 + R2"
+      },
+      {
+        "text": "等效電阻就是較小的那顆 {R1} Ω",
+        "formula": "R1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "lamps",
+        "model": "parallel_formula_check",
+        "prompt": "兩盞並聯桌燈看成 {R1} Ω 與 {R2} Ω。同學說等效電阻是 {R1}+{R2} Ω。哪一個說法正確？",
+        "conditions": [
+          "第一盞 {R1} Ω",
+          "第二盞 {R2} Ω"
+        ]
+      },
+      {
+        "id": "chargers",
+        "model": "parallel_formula_check",
+        "prompt": "兩個純電阻負載並聯，{R1} Ω 與 {R2} Ω。同學把它們相加。哪一個說法正確？",
+        "conditions": [
+          "負載一 {R1} Ω",
+          "負載二 {R2} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "並聯要用電導相加，不能把電阻直接相加。",
+      "Req = 1 / (1/{R1} + 1/{R2}) = {Rp} Ω。",
+      "相加會得到 {sm} Ω，那是串聯的算法。"
+    ],
+    "substitution": "Req = 1 / (1/{R1} + 1/{R2}) = {Rp} Ω",
+    "unit_check": "並聯結果仍是歐姆，而且不會比最小的那顆更大。",
+    "common_mistakes": [
+      "接受同學的相加結果。",
+      "只留下其中一顆電阻。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "sp-fault",
+    "topic": "series_parallel",
+    "difficulty": "hard",
+    "thinking": "fault",
+    "type": "choice",
+    "model": "series_string_open_bulb",
+    "connection": "數顆燈泡串成一串。其中一顆燈絲開路後，整條迴路中斷。",
+    "assumptions": [
+      "燈串是串聯，沒有跨接的並聯路徑",
+      "電源電壓仍然存在"
+    ],
+    "source_ids": [
+      "aac_sp",
+      "aac_resistance",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Vs",
+        "values": [
+          12,
+          24
+        ]
+      },
+      {
+        "name": "R",
+        "values": [
+          8,
+          10
+        ]
+      },
+      {
+        "name": "n",
+        "values": [
+          4,
+          8
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "I",
+        "formula": "Vs / (n * R) * 1000"
+      }
+    ],
+    "answer_formula": "1",
+    "options": [
+      {
+        "text": "開路的那顆讓整串電流變成 0，其餘燈泡也熄滅",
+        "formula": "1"
+      },
+      {
+        "text": "只有壞掉的那顆熄滅，其餘仍有約 {I} mA",
+        "formula": "0"
+      },
+      {
+        "text": "電流變成健康時的 2 倍",
+        "formula": "2"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "tree",
+        "model": "series_string_open_bulb",
+        "prompt": "燈串有 {n} 顆燈泡串聯，每顆健康時 {R} Ω，電源 {Vs} V。現在其中一顆燈絲開路，整串都不亮。哪一種描述符合？",
+        "conditions": [
+          "電源 {Vs} V",
+          "每顆健康電阻 {R} Ω",
+          "顆數 {n}"
+        ]
+      },
+      {
+        "id": "torch",
+        "model": "series_string_open_bulb",
+        "prompt": "手電筒內 {n} 顆燈珠串聯，每顆 {R} Ω，電池組 {Vs} V。一顆開路後全部不亮。哪一種描述符合？",
+        "conditions": [
+          "電池組 {Vs} V",
+          "每顆 {R} Ω",
+          "顆數 {n}"
+        ]
+      }
+    ],
+    "steps": [
+      "串聯迴路只要有一處開路，電流就無處可走。",
+      "健康時電流約是 {Vs} / ({n}×{R}) = {I} mA。",
+      "開路後電流是 0，其餘燈泡也沒有電流。"
+    ],
+    "substitution": "健康時 I = {Vs} / ({n} * {R}) = {I} mA；開路後 I = 0",
+    "unit_check": "開路後的電流是 0 mA。健康電流才用伏特除以歐姆。",
+    "common_mistakes": [
+      "把串聯燈串當成並聯，以為只有一顆會熄。",
+      "開路後仍用健康電阻計算電流。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "kv-forward",
+    "topic": "kirchhoff",
+    "difficulty": "easy",
+    "thinking": "forward",
+    "type": "numeric",
+    "model": "dimmer_divider",
+    "connection": "桌燈調光器由兩顆電阻串聯，燈接在下方電阻兩端，而且沒有另外的負載。",
+    "assumptions": [
+      "輸出端開路",
+      "電源內阻忽略",
+      "兩顆都是線性電阻"
+    ],
+    "source_ids": [
+      "aac_vdiv",
+      "aac_kvl",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Vs",
+        "values": [
+          12,
+          24
+        ]
+      },
+      {
+        "name": "R1",
+        "values": [
+          100,
+          200
+        ]
+      },
+      {
+        "name": "R2",
+        "values": [
+          100,
+          200,
+          300
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Vo",
+        "formula": "Vs * R2 / (R1 + R2)"
+      }
+    ],
+    "answer_formula": "Vo",
+    "unit": "V",
+    "scenarios": [
+      {
+        "id": "dimmer",
+        "model": "dimmer_divider",
+        "prompt": "桌燈調光器的電源是 {Vs} V，上臂 {R1} Ω，下臂 {R2} Ω。燈接在下臂兩端且沒有別的負載。燈的電壓是多少 V？",
+        "conditions": [
+          "電源 {Vs} V",
+          "上臂 {R1} Ω",
+          "下臂 {R2} Ω"
+        ]
+      },
+      {
+        "id": "night",
+        "model": "dimmer_divider",
+        "prompt": "小夜燈的分壓電源 {Vs} V，上臂 {R1} Ω，下臂 {R2} Ω，下臂開路。下臂電壓是多少 V？",
+        "conditions": [
+          "電源 {Vs} V",
+          "上臂 {R1} Ω",
+          "下臂 {R2} Ω"
+        ]
+      }
+    ],
+    "diagram": {
+      "kind": "divider",
+      "title": "調光分壓",
+      "vin": "{Vs} V",
+      "r_top": "{R1} Ω",
+      "r_bot": "{R2} Ω",
+      "meter": "燈"
+    },
+    "steps": [
+      "開路分壓 Vo = Vs × R2 / (R1 + R2)。",
+      "代入 {Vs} V、{R1} Ω、{R2} Ω。",
+      "Vo = {Vs} × {R2} / ({R1}+{R2}) = {Vo} V。"
+    ],
+    "substitution": "Vo = {Vs} * {R2} / ({R1} + {R2}) = {Vo} V",
+    "unit_check": "電阻比沒有單位，乘上伏特後仍是伏特。",
+    "common_mistakes": [
+      "分子用了上臂電阻。",
+      "燈已經另外吃電流仍用開路分壓。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "kv-compare",
+    "topic": "kirchhoff",
+    "difficulty": "easy",
+    "thinking": "compare",
+    "type": "choice",
+    "model": "compare_two_dividers",
+    "connection": "兩個開路分壓器接到同一個電源，下臂電阻不同。",
+    "assumptions": [
+      "兩個輸出都沒有接負載",
+      "上臂電阻相同"
+    ],
+    "source_ids": [
+      "aac_vdiv",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Vs",
+        "values": [
+          12
+        ]
+      },
+      {
+        "name": "R1",
+        "values": [
+          100
+        ]
+      },
+      {
+        "name": "Ra",
+        "values": [
+          300,
+          400
+        ]
+      },
+      {
+        "name": "Rb",
+        "values": [
+          100,
+          200
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Va",
+        "formula": "Vs * Ra / (R1 + Ra)"
+      },
+      {
+        "name": "Vb",
+        "formula": "Vs * Rb / (R1 + Rb)"
+      }
+    ],
+    "constraints": [
+      "Ra - Rb"
+    ],
+    "answer_formula": "Vs * Ra / (R1 + Ra)",
+    "options": [
+      {
+        "text": "甲的燈較亮，電壓 {Va} V",
+        "formula": "Vs * Ra / (R1 + Ra)"
+      },
+      {
+        "text": "乙的燈較亮，電壓 {Vb} V",
+        "formula": "Vs * Rb / (R1 + Rb)"
+      },
+      {
+        "text": "一樣亮，因為電源都是 {Vs} V",
+        "formula": "0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "dimmers",
+        "model": "compare_two_dividers",
+        "prompt": "兩組桌燈調光器的電源都是 {Vs} V，上臂都是 {R1} Ω。甲的下臂 {Ra} Ω，乙的下臂 {Rb} Ω，輸出都開路。哪一盞燈的電壓比較高？",
+        "conditions": [
+          "電源 {Vs} V",
+          "上臂 {R1} Ω",
+          "甲下臂 {Ra} Ω",
+          "乙下臂 {Rb} Ω"
+        ]
+      },
+      {
+        "id": "nights",
+        "model": "compare_two_dividers",
+        "prompt": "兩盞小夜燈用開路分壓，電源 {Vs} V，上臂 {R1} Ω。甲下臂 {Ra} Ω，乙下臂 {Rb} Ω。哪一盞電壓比較高？",
+        "conditions": [
+          "電源 {Vs} V",
+          "上臂 {R1} Ω",
+          "甲 {Ra} Ω",
+          "乙 {Rb} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "開路時輸出比例是下臂除以總電阻。",
+      "甲是 {Vs} × {Ra} / ({R1}+{Ra}) = {Va} V。",
+      "乙是 {Vb} V。下臂較大的甲電壓較高。"
+    ],
+    "substitution": "Va = {Vs} * {Ra} / ({R1} + {Ra}) = {Va} V",
+    "unit_check": "兩個輸出都是伏特。",
+    "common_mistakes": [
+      "電源相同就認為輸出相同。",
+      "下臂較小的那個電壓較高。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "kv-reverse",
+    "topic": "kirchhoff",
+    "difficulty": "medium",
+    "thinking": "reverse",
+    "type": "numeric",
+    "model": "divider_find_bottom",
+    "connection": "開路分壓器，上臂已知，要選下臂來得到指定的燈電壓。",
+    "assumptions": [
+      "輸出不另接負載",
+      "目標電壓低於電源"
+    ],
+    "source_ids": [
+      "aac_vdiv",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Vs",
+        "values": [
+          12,
+          24
+        ]
+      },
+      {
+        "name": "Vo",
+        "values": [
+          3,
+          4,
+          6
+        ]
+      },
+      {
+        "name": "R1",
+        "values": [
+          100,
+          200
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "R2",
+        "formula": "Vo * R1 / (Vs - Vo)"
+      }
+    ],
+    "constraints": [
+      "Vs - Vo"
+    ],
+    "answer_formula": "R2",
+    "unit": "Ω",
+    "scenarios": [
+      {
+        "id": "dimmer",
+        "model": "divider_find_bottom",
+        "prompt": "桌燈調光器的電源是 {Vs} V，上臂固定 {R1} Ω。希望開路時燈電壓是 {Vo} V。下臂要多少 Ω？",
+        "conditions": [
+          "電源 {Vs} V",
+          "上臂 {R1} Ω",
+          "目標燈電壓 {Vo} V"
+        ]
+      },
+      {
+        "id": "night",
+        "model": "divider_find_bottom",
+        "prompt": "小夜燈電源 {Vs} V，上臂 {R1} Ω，想讓開路輸出是 {Vo} V。下臂電阻是多少 Ω？",
+        "conditions": [
+          "電源 {Vs} V",
+          "上臂 {R1} Ω",
+          "目標 {Vo} V"
+        ]
+      }
+    ],
+    "steps": [
+      "由 Vo = Vs × R2 / (R1+R2) 反求 R2。",
+      "R2 = Vo × R1 / (Vs − Vo)。",
+      "R2 = {Vo} × {R1} / ({Vs}−{Vo}) = {R2} Ω。"
+    ],
+    "substitution": "R2 = {Vo} * {R1} / ({Vs} - {Vo}) = {R2} Ω",
+    "unit_check": "伏特在比例中消去，結果是歐姆。",
+    "common_mistakes": [
+      "用 Vs 減 Vo 直接當電阻。",
+      "分子用了上臂以外的電源電壓。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "kv-predict",
+    "topic": "kirchhoff",
+    "difficulty": "medium",
+    "thinking": "predict",
+    "type": "numeric",
+    "model": "divider_gains_a_load",
+    "connection": "原本開路的分壓器，後來在下臂兩端接上一顆負載電阻。",
+    "assumptions": [
+      "負載是純電阻",
+      "電源與上、下臂本身不變"
+    ],
+    "source_ids": [
+      "aac_vdiv",
+      "aac_parallel",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Vs",
+        "values": [
+          12
+        ]
+      },
+      {
+        "name": "R1",
+        "values": [
+          100,
+          200
+        ]
+      },
+      {
+        "name": "R2",
+        "values": [
+          100,
+          200
+        ]
+      },
+      {
+        "name": "RL",
+        "values": [
+          100,
+          200
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Rp",
+        "formula": "1 / (1 / R2 + 1 / RL)"
+      },
+      {
+        "name": "VL",
+        "formula": "Vs * Rp / (R1 + Rp)"
+      }
+    ],
+    "answer_formula": "VL",
+    "unit": "V",
+    "scenarios": [
+      {
+        "id": "lamp",
+        "model": "divider_gains_a_load",
+        "prompt": "調光器電源 {Vs} V，上臂 {R1} Ω，下臂 {R2} Ω。原本開路，現在接上 {RL} Ω 的燈。燈的電壓變成多少 V？",
+        "conditions": [
+          "電源 {Vs} V",
+          "上臂 {R1} Ω",
+          "下臂 {R2} Ω",
+          "燈 {RL} Ω"
+        ]
+      },
+      {
+        "id": "night",
+        "model": "divider_gains_a_load",
+        "prompt": "小夜燈分壓器 {Vs} V、上臂 {R1} Ω、下臂 {R2} Ω。加接 {RL} Ω 負載後，輸出電壓是多少 V？",
+        "conditions": [
+          "電源 {Vs} V",
+          "上臂 {R1} Ω",
+          "下臂 {R2} Ω",
+          "負載 {RL} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "負載與下臂並聯，Rp = {Rp} Ω。",
+      "再和上臂分壓。",
+      "VL = {Vs} × {Rp} / ({R1}+{Rp}) = {VL} V。"
+    ],
+    "substitution": "VL = {Vs} * {Rp} / ({R1} + {Rp}) = {VL} V",
+    "unit_check": "分壓結果是伏特。並聯電阻先換成歐姆再代入。",
+    "common_mistakes": [
+      "仍用沒有負載的分壓公式。",
+      "把負載和上臂當成並聯。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "kv-error",
+    "topic": "kirchhoff",
+    "difficulty": "hard",
+    "thinking": "error",
+    "type": "choice",
+    "model": "divider_numerator_check",
+    "connection": "開路分壓，輸出取自下臂。",
+    "assumptions": [
+      "同學把上臂放進分子"
+    ],
+    "source_ids": [
+      "aac_vdiv",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Vs",
+        "values": [
+          12
+        ]
+      },
+      {
+        "name": "R1",
+        "values": [
+          100,
+          300
+        ]
+      },
+      {
+        "name": "R2",
+        "values": [
+          200,
+          100
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Vo",
+        "formula": "Vs * R2 / (R1 + R2)"
+      },
+      {
+        "name": "wrong",
+        "formula": "Vs * R1 / (R1 + R2)"
+      }
+    ],
+    "constraints": [
+      "R1 - R2",
+      "R2 - 50"
+    ],
+    "answer_formula": "Vs * R2 / (R1 + R2)",
+    "options": [
+      {
+        "text": "正確是下臂分到的 {Vo} V",
+        "formula": "Vs * R2 / (R1 + R2)"
+      },
+      {
+        "text": "同學是對的，輸出是 {wrong} V",
+        "formula": "Vs * R1 / (R1 + R2)"
+      },
+      {
+        "text": "輸出就是電源 {Vs} V",
+        "formula": "Vs"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "dimmer",
+        "model": "divider_numerator_check",
+        "prompt": "桌燈調光器 {Vs} V，上臂 {R1} Ω，下臂 {R2} Ω，輸出開路。同學用上臂當分子。哪一個說法正確？",
+        "conditions": [
+          "電源 {Vs} V",
+          "上臂 {R1} Ω",
+          "下臂 {R2} Ω"
+        ]
+      },
+      {
+        "id": "sensor",
+        "model": "divider_numerator_check",
+        "prompt": "感測分壓器 {Vs} V，上臂 {R1} Ω，下臂 {R2} Ω。同學把分子寫成上臂。哪一個說法正確？",
+        "conditions": [
+          "電源 {Vs} V",
+          "上臂 {R1} Ω",
+          "下臂 {R2} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "開路時，輸出是下臂的分壓。",
+      "同學用 R1 當分子，得到 {wrong} V。",
+      "正確是 {Vs} × {R2} / ({R1}+{R2}) = {Vo} V。"
+    ],
+    "substitution": "Vo = {Vs} * {R2} / ({R1} + {R2}) = {Vo} V",
+    "unit_check": "結果是伏特。分子必須是輸出所在的那顆電阻。",
+    "common_mistakes": [
+      "接受上臂當分子的結果。",
+      "認為輸出等於電源電壓。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "kv-fault",
+    "topic": "kirchhoff",
+    "difficulty": "hard",
+    "thinking": "fault",
+    "type": "numeric",
+    "model": "divider_bottom_short",
+    "connection": "分壓器的下臂被短路，電源仍經上臂接到這個短路線。",
+    "assumptions": [
+      "下臂電阻變成 0",
+      "短路線是理想的",
+      "上臂沒有損壞"
+    ],
+    "source_ids": [
+      "aac_kvl",
+      "aac_ohm",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Vs",
+        "values": [
+          12,
+          24
+        ]
+      },
+      {
+        "name": "R1",
+        "values": [
+          100,
+          200,
+          300
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "I_mA",
+        "formula": "Vs / R1 * 1000"
+      }
+    ],
+    "answer_formula": "I_mA",
+    "unit": "mA",
+    "scenarios": [
+      {
+        "id": "dimmer",
+        "model": "divider_bottom_short",
+        "prompt": "桌燈調光器的電源仍是 {Vs} V，上臂仍是 {R1} Ω，但下臂量到短路，燈電壓是 0。通過上臂的電流是多少 mA？",
+        "conditions": [
+          "電源 {Vs} V",
+          "上臂 {R1} Ω",
+          "下臂已短路"
+        ]
+      },
+      {
+        "id": "night",
+        "model": "divider_bottom_short",
+        "prompt": "小夜燈分壓器 {Vs} V，上臂 {R1} Ω。下臂短路後輸出是 0 V。上臂電流是多少 mA？",
+        "conditions": [
+          "電源 {Vs} V",
+          "上臂 {R1} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "下臂短路後，上臂單獨跨在電源上。",
+      "I = Vs / R1。",
+      "I = {Vs} / {R1} = {I_mA} mA。"
+    ],
+    "substitution": "I = {Vs} / {R1} = {I_mA} mA",
+    "unit_check": "伏特除以歐姆是安培，再換成毫安。",
+    "common_mistakes": [
+      "輸出是 0 就認為電流也是 0。",
+      "仍用兩顆電阻的分壓公式。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "eq-forward",
+    "topic": "equivalent",
+    "difficulty": "easy",
+    "thinking": "forward",
+    "type": "numeric",
+    "model": "sensor_open_port",
+    "connection": "感測端口的上臂接到電源，下臂接到地，端口開路。",
+    "assumptions": [
+      "端口沒有接負載",
+      "這是開路電壓，不是接上燈之後的電壓"
+    ],
+    "source_ids": [
+      "aac_thevenin",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Vs",
+        "values": [
+          12,
+          18,
+          24
+        ]
+      },
+      {
+        "name": "R1",
+        "values": [
+          100,
+          200
+        ]
+      },
+      {
+        "name": "R2",
+        "values": [
+          100,
+          300
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Vth",
+        "formula": "Vs / (1 + R1 / R2)"
+      }
+    ],
+    "answer_formula": "Vth",
+    "unit": "V",
+    "scenarios": [
+      {
+        "id": "sensor",
+        "model": "sensor_open_port",
+        "prompt": "夜燈感測端口的電源是 {Vs} V，上臂 {R1} Ω，下臂 {R2} Ω，端口還沒接負載。開路電壓是多少 V？",
+        "conditions": [
+          "電源 {Vs} V",
+          "上臂 {R1} Ω",
+          "下臂 {R2} Ω"
+        ]
+      },
+      {
+        "id": "probe",
+        "model": "sensor_open_port",
+        "prompt": "測試盒的端口由 {Vs} V、{R1} Ω 與 {R2} Ω 組成，輸出開路。開路電壓是多少 V？",
+        "conditions": [
+          "電源 {Vs} V",
+          "R1 = {R1} Ω",
+          "R2 = {R2} Ω"
+        ]
+      }
+    ],
+    "diagram": {
+      "kind": "thevenin",
+      "title": "開路端口",
+      "v": "{Vs} V",
+      "r1": "{R1} Ω",
+      "r2": "{R2} Ω"
+    },
+    "steps": [
+      "開路端口沒有負載電流。",
+      "Vth = Vs / (1 + R1/R2)。",
+      "Vth = {Vs} / (1 + {R1}/{R2}) = {Vth} V。"
+    ],
+    "substitution": "Vth = {Vs} / (1 + {R1} / {R2}) = {Vth} V",
+    "unit_check": "結果是伏特。",
+    "common_mistakes": [
+      "把上臂放在分子。",
+      "端口已經接了負載仍用開路電壓。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "eq-compare",
+    "topic": "equivalent",
+    "difficulty": "easy",
+    "thinking": "compare",
+    "type": "choice",
+    "model": "compare_two_thevenin_ports",
+    "connection": "兩個端口都已化成電壓源串聯同一個內阻，負載還沒接上。比較的是開路電壓較高的那一個。",
+    "assumptions": [
+      "兩個端口的內阻相同",
+      "負載尚未接上，所以開路電壓高的那個能對同一個負載給出較高電壓"
+    ],
+    "source_ids": [
+      "aac_thevenin",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "V1",
+        "values": [
+          9,
+          12
+        ]
+      },
+      {
+        "name": "V2",
+        "values": [
+          5,
+          6
+        ]
+      },
+      {
+        "name": "Rth",
+        "values": [
+          10,
+          20
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "gap",
+        "formula": "V1 - V2"
+      }
+    ],
+    "constraints": [
+      "V1 - V2"
+    ],
+    "answer_formula": "V1",
+    "options": [
+      {
+        "text": "甲的端口較強，開路電壓 {V1} V",
+        "formula": "V1"
+      },
+      {
+        "text": "乙的端口較強，開路電壓 {V2} V",
+        "formula": "V2"
+      },
+      {
+        "text": "一樣，因為內阻都是 {Rth} Ω",
+        "formula": "0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "packs",
+        "model": "compare_two_thevenin_ports",
+        "prompt": "兩個行動電源都用戴維寧模型，內阻都是 {Rth} Ω。甲的開路電壓 {V1} V，乙是 {V2} V。接上同一個負載前，哪一個端口的開路電壓比較高？",
+        "conditions": [
+          "甲 {V1} V",
+          "乙 {V2} V",
+          "內阻都是 {Rth} Ω"
+        ]
+      },
+      {
+        "id": "adapters",
+        "model": "compare_two_thevenin_ports",
+        "prompt": "兩個變壓器直流輸出都可看成電壓源串 {Rth} Ω。甲是 {V1} V，乙是 {V2} V。哪一個開路電壓比較高？",
+        "conditions": [
+          "甲 {V1} V",
+          "乙 {V2} V",
+          "串聯內阻 {Rth} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "負載還沒接上時，端口電壓就是開路電壓。",
+      "內阻相同，不會改變開路電壓的比較。",
+      "甲是 {V1} V，乙是 {V2} V，甲較高。"
+    ],
+    "substitution": "V1 - V2 = {V1} - {V2} = {gap} V",
+    "unit_check": "兩個開路電壓都是伏特。",
+    "common_mistakes": [
+      "內阻相同就認為兩個端口一樣。",
+      "選開路電壓較低的那個。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "eq-reverse",
+    "topic": "equivalent",
+    "difficulty": "medium",
+    "thinking": "reverse",
+    "type": "numeric",
+    "model": "thevenin_find_load",
+    "connection": "已知戴維寧電壓與內阻，負載已接上並量到負載電壓，反求負載電阻。",
+    "assumptions": [
+      "負載是純電阻",
+      "端口沒有其他並聯路徑"
+    ],
+    "source_ids": [
+      "aac_thevenin",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Vth",
+        "values": [
+          10,
+          12
+        ]
+      },
+      {
+        "name": "VL",
+        "values": [
+          6,
+          8
+        ]
+      },
+      {
+        "name": "Rth",
+        "values": [
+          10,
+          20
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "RL",
+        "formula": "VL * Rth / (Vth - VL)"
+      }
+    ],
+    "constraints": [
+      "Vth - VL"
+    ],
+    "answer_formula": "RL",
+    "unit": "Ω",
+    "scenarios": [
+      {
+        "id": "adapter",
+        "model": "thevenin_find_load",
+        "prompt": "變壓器直流端可看成 {Vth} V 串聯 {Rth} Ω。接上純電阻負載後，負載電壓是 {VL} V。負載是多少 Ω？",
+        "conditions": [
+          "開路電壓 {Vth} V",
+          "內阻 {Rth} Ω",
+          "負載電壓 {VL} V"
+        ]
+      },
+      {
+        "id": "pack",
+        "model": "thevenin_find_load",
+        "prompt": "行動電源的戴維寧模型是 {Vth} V 與 {Rth} Ω。純電阻測試負載上的電壓是 {VL} V。測試電阻是多少 Ω？",
+        "conditions": [
+          "Vth = {Vth} V",
+          "Rth = {Rth} Ω",
+          "負載電壓 {VL} V"
+        ]
+      }
+    ],
+    "steps": [
+      "負載與內阻串聯分壓。",
+      "RL = VL × Rth / (Vth − VL)。",
+      "RL = {VL} × {Rth} / ({Vth}−{VL}) = {RL} Ω。"
+    ],
+    "substitution": "RL = {VL} * {Rth} / ({Vth} - {VL}) = {RL} Ω",
+    "unit_check": "伏特在比例中消去，得到歐姆。",
+    "common_mistakes": [
+      "用 Vth / VL 當電阻。",
+      "把內阻當成負載。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "eq-predict",
+    "topic": "equivalent",
+    "difficulty": "medium",
+    "thinking": "predict",
+    "type": "numeric",
+    "model": "thevenin_voltage_rises",
+    "connection": "端口的內阻不變，開路電壓從原來的值提高到新的值，負載仍選在匹配點。",
+    "assumptions": [
+      "負載等於內阻",
+      "只改變開路電壓",
+      "功率是負載吸收的最大功率"
+    ],
+    "source_ids": [
+      "aac_pmax",
+      "aac_thevenin",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "V1",
+        "values": [
+          6,
+          8
+        ]
+      },
+      {
+        "name": "V2",
+        "values": [
+          10,
+          12
+        ]
+      },
+      {
+        "name": "Rth",
+        "values": [
+          10,
+          20
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "P1",
+        "formula": "V1 * V1 / (4 * Rth) * 1000"
+      },
+      {
+        "name": "P2",
+        "formula": "V2 * V2 / (4 * Rth) * 1000"
+      }
+    ],
+    "constraints": [
+      "V2 - V1"
+    ],
+    "answer_formula": "P2",
+    "unit": "mW",
+    "abs_tol": 0.5,
+    "scenarios": [
+      {
+        "id": "pack",
+        "model": "thevenin_voltage_rises",
+        "prompt": "行動電源的內阻維持 {Rth} Ω。開路電壓從 {V1} V 提高到 {V2} V，負載仍等於內阻。負載的最大功率變成多少 mW？",
+        "conditions": [
+          "內阻 {Rth} Ω",
+          "原開路電壓 {V1} V",
+          "新開路電壓 {V2} V"
+        ]
+      },
+      {
+        "id": "adapter",
+        "model": "thevenin_voltage_rises",
+        "prompt": "變壓器端口內阻 {Rth} Ω 不變，開路電壓由 {V1} V 改為 {V2} V。匹配負載能拿到的功率變成多少 mW？",
+        "conditions": [
+          "內阻 {Rth} Ω",
+          "原來 {V1} V",
+          "後來 {V2} V"
+        ]
+      }
+    ],
+    "steps": [
+      "匹配時 Pmax = Vth² / (4 Rth)。",
+      "原來是 {P1} mW。",
+      "電壓改成 {V2} V 後，Pmax = {V2}² / (4×{Rth}) = {P2} mW。"
+    ],
+    "substitution": "Pmax = {V2} * {V2} / (4 * {Rth}) = {P2} mW",
+    "unit_check": "伏特平方除以歐姆是瓦特，乘 1000 後是毫瓦。",
+    "common_mistakes": [
+      "功率和電壓成正比，忘了平方。",
+      "內阻也跟著電壓一起改。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "rel_tol": 0.01
+  },
+  {
+    "id": "eq-error",
+    "topic": "equivalent",
+    "difficulty": "hard",
+    "thinking": "error",
+    "type": "choice",
+    "model": "source_kill_check",
+    "connection": "求端口等效電阻時，獨立電壓源應改成短路。",
+    "assumptions": [
+      "網路裡只有這兩顆電阻和一顆獨立電壓源",
+      "同學把電壓源拿掉後當成開路"
+    ],
+    "source_ids": [
+      "aac_thevenin",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "R1",
+        "values": [
+          100,
+          200
+        ]
+      },
+      {
+        "name": "R2",
+        "values": [
+          100,
+          300
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Rth",
+        "formula": "R1 * R2 / (R1 + R2)"
+      },
+      {
+        "name": "sm",
+        "formula": "R1 + R2"
+      }
+    ],
+    "answer_formula": "R1 * R2 / (R1 + R2)",
+    "options": [
+      {
+        "text": "正確是並聯的 {Rth} Ω；電壓源短路後兩顆電阻才並聯",
+        "formula": "R1 * R2 / (R1 + R2)"
+      },
+      {
+        "text": "同學是對的，電壓源拿掉後電阻串聯成 {sm} Ω",
+        "formula": "R1 + R2"
+      },
+      {
+        "text": "等效電阻就是 {R1} Ω",
+        "formula": "R1"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "port",
+        "model": "source_kill_check",
+        "prompt": "端口由 {R1} Ω、{R2} Ω 和一顆獨立電壓源組成。同學把電壓源拿掉當成開路，說等效電阻是兩顆相加。哪一個說法正確？",
+        "conditions": [
+          "R1 = {R1} Ω",
+          "R2 = {R2} Ω"
+        ]
+      },
+      {
+        "id": "adapter",
+        "model": "source_kill_check",
+        "prompt": "變壓器等效電路裡有 {R1} Ω、{R2} Ω 與獨立電壓源。同學關掉電源時把它看成開路。哪一個說法正確？",
+        "conditions": [
+          "R1 = {R1} Ω",
+          "R2 = {R2} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "獨立電壓源短路後，R1 與 R2 並聯。",
+      "Rth = R1×R2/(R1+R2) = {Rth} Ω。",
+      "把電壓源當開路會得到串聯的 {sm} Ω。"
+    ],
+    "substitution": "Rth = {R1} * {R2} / ({R1} + {R2}) = {Rth} Ω",
+    "unit_check": "等效電阻的單位是歐姆。",
+    "common_mistakes": [
+      "接受同學的串聯結果。",
+      "只留下其中一顆電阻。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "eq-fault",
+    "topic": "equivalent",
+    "difficulty": "hard",
+    "thinking": "fault",
+    "type": "numeric",
+    "model": "usb_pack_internal_resistance",
+    "connection": "行動電源或變壓器看成理想電壓源串聯一個內阻，再接一顆純電阻測試負載。",
+    "assumptions": [
+      "空載電壓就是戴維寧電壓",
+      "測試負載是純電阻，不是手機",
+      "讀數是直流穩態"
+    ],
+    "source_ids": [
+      "aac_thevenin",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Voc",
+        "values": [
+          5,
+          12
+        ]
+      },
+      {
+        "name": "VL",
+        "values": [
+          3,
+          4,
+          8
+        ]
+      },
+      {
+        "name": "RL",
+        "values": [
+          8,
+          15,
+          30
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Rint",
+        "formula": "(Voc - VL) * RL / VL"
+      }
+    ],
+    "constraints": [
+      "Voc - VL - 0.5",
+      "Rint - 0.5"
+    ],
+    "answer_formula": "Rint",
+    "unit": "Ω",
+    "scenarios": [
+      {
+        "id": "pack",
+        "model": "usb_pack_internal_resistance",
+        "prompt": "USB 行動電源空載 {Voc} V。接上 {RL} Ω 的純電阻測試負載後，負載兩端只剩 {VL} V。這不是手機。若看成 {Voc} V 串聯一個內阻，內阻是多少 Ω？",
+        "conditions": [
+          "空載電壓 {Voc} V",
+          "測試電阻 {RL} Ω",
+          "負載電壓 {VL} V"
+        ]
+      },
+      {
+        "id": "adapter",
+        "model": "usb_pack_internal_resistance",
+        "prompt": "直流變壓器空載 {Voc} V。接上 {RL} Ω 測試電阻後，輸出掉到 {VL} V。內阻是多少 Ω？",
+        "conditions": [
+          "空載 {Voc} V",
+          "測試電阻 {RL} Ω",
+          "負載電壓 {VL} V"
+        ]
+      }
+    ],
+    "steps": [
+      "負載電流是 VL / RL。",
+      "內阻壓降是 Voc − VL。",
+      "Rint = ({Voc}−{VL}) × {RL} / {VL} = {Rint} Ω。"
+    ],
+    "substitution": "Rint = ({Voc} - {VL}) * {RL} / {VL} = {Rint} Ω",
+    "unit_check": "伏特除以安培是歐姆。",
+    "common_mistakes": [
+      "把測試電阻 {RL} Ω 當成內阻。",
+      "用空載電壓去除測試電阻，忽略負載電壓已經下降。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "tr-forward",
+    "topic": "transient",
+    "difficulty": "easy",
+    "thinking": "forward",
+    "type": "numeric",
+    "model": "flash_rc_tau",
+    "connection": "相機閃光的充電迴路由一顆電阻與一顆電容串聯。",
+    "assumptions": [
+      "迴路裡沒有其他電阻",
+      "電容是理想的"
+    ],
+    "source_ids": [
+      "aac_tau",
+      "aac_rc",
+      "nycu_ch3"
+    ],
+    "variables": [
+      {
+        "name": "R",
+        "values": [
+          1000,
+          2000
+        ]
+      },
+      {
+        "name": "C_uF",
+        "values": [
+          50,
+          100
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "tau_ms",
+        "formula": "R * C_uF * 1e-3"
+      }
+    ],
+    "answer_formula": "tau_ms",
+    "unit": "ms",
+    "scenarios": [
+      {
+        "id": "flash",
+        "model": "flash_rc_tau",
+        "prompt": "相機閃光的充電電阻是 {R} Ω，儲能電容是 {C_uF} µF。時間常數是多少 ms？",
+        "conditions": [
+          "充電電阻 {R} Ω",
+          "電容 {C_uF} µF"
+        ]
+      },
+      {
+        "id": "timer",
+        "model": "flash_rc_tau",
+        "prompt": "走廊延時燈的充電迴路是 {R} Ω 串 {C_uF} µF。時間常數是多少 ms？",
+        "conditions": [
+          "電阻 {R} Ω",
+          "電容 {C_uF} µF"
+        ]
+      }
+    ],
+    "diagram": {
+      "kind": "rc",
+      "title": "充電迴路",
+      "v": "直流",
+      "r": "{R} Ω",
+      "c": "{C_uF} µF"
+    },
+    "steps": [
+      "串聯 RC 的時間常數 τ = R C。",
+      "電容要先換成法拉。",
+      "τ = {R} × {C_uF} × 10⁻⁶ s = {tau_ms} ms。"
+    ],
+    "substitution": "tau = {R} * {C_uF} * 1e-6 s = {tau_ms} ms",
+    "unit_check": "歐姆乘法拉是秒，題目問毫秒。",
+    "common_mistakes": [
+      "把微法直接乘電阻卻不換單位。",
+      "用 1/(R C) 當時間常數。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "tr-compare",
+    "topic": "transient",
+    "difficulty": "easy",
+    "thinking": "compare",
+    "type": "choice",
+    "model": "compare_two_flash_timers",
+    "connection": "兩組閃光充電迴路都是串聯 RC，電阻相同，電容不同。",
+    "assumptions": [
+      "電阻相同",
+      "電容都是理想的"
+    ],
+    "source_ids": [
+      "aac_tau",
+      "nycu_ch3"
+    ],
+    "variables": [
+      {
+        "name": "R",
+        "values": [
+          1000
+        ]
+      },
+      {
+        "name": "C1",
+        "values": [
+          100,
+          200
+        ]
+      },
+      {
+        "name": "C2",
+        "values": [
+          20,
+          47
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "t1",
+        "formula": "R * C1 * 1e-3"
+      },
+      {
+        "name": "t2",
+        "formula": "R * C2 * 1e-3"
+      }
+    ],
+    "constraints": [
+      "C1 - C2"
+    ],
+    "answer_formula": "R * C1 * 1e-3",
+    "options": [
+      {
+        "text": "甲較慢，時間常數 {t1} ms",
+        "formula": "R * C1 * 1e-3"
+      },
+      {
+        "text": "乙較慢，時間常數 {t2} ms",
+        "formula": "R * C2 * 1e-3"
+      },
+      {
+        "text": "一樣快，因為電阻都是 {R} Ω",
+        "formula": "0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "flash",
+        "model": "compare_two_flash_timers",
+        "prompt": "兩台相機的閃光充電電阻都是 {R} Ω。甲的電容 {C1} µF，乙的電容 {C2} µF。哪一台的時間常數比較大？",
+        "conditions": [
+          "電阻都是 {R} Ω",
+          "甲電容 {C1} µF",
+          "乙電容 {C2} µF"
+        ]
+      },
+      {
+        "id": "timer",
+        "model": "compare_two_flash_timers",
+        "prompt": "兩盞延時燈的電阻都是 {R} Ω。甲用 {C1} µF，乙用 {C2} µF。哪一盞充得比較慢？",
+        "conditions": [
+          "電阻 {R} Ω",
+          "甲 {C1} µF",
+          "乙 {C2} µF"
+        ]
+      }
+    ],
+    "steps": [
+      "τ = R C，電阻相同時電容大的時間常數大。",
+      "甲是 {t1} ms。",
+      "乙是 {t2} ms，所以甲比較慢。"
+    ],
+    "substitution": "tau1 = {R} * {C1} * 1e-3 = {t1} ms",
+    "unit_check": "兩邊都用毫秒。",
+    "common_mistakes": [
+      "電阻相同就認為時間常數相同。",
+      "電容小的那個比較慢。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "tr-reverse",
+    "topic": "transient",
+    "difficulty": "medium",
+    "thinking": "reverse",
+    "type": "numeric",
+    "model": "flash_find_capacitance",
+    "connection": "已知閃光迴路的電阻與時間常數，反求電容。",
+    "assumptions": [
+      "迴路是單一串聯 RC",
+      "時間常數已由實驗得到"
+    ],
+    "source_ids": [
+      "aac_tau",
+      "nycu_ch3"
+    ],
+    "variables": [
+      {
+        "name": "R",
+        "values": [
+          1000,
+          2000
+        ]
+      },
+      {
+        "name": "tau_ms",
+        "values": [
+          50,
+          100,
+          200
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "C_uF",
+        "formula": "tau_ms * 1000 / R"
+      }
+    ],
+    "answer_formula": "C_uF",
+    "unit": "µF",
+    "scenarios": [
+      {
+        "id": "flash",
+        "model": "flash_find_capacitance",
+        "prompt": "相機閃光的充電電阻是 {R} Ω，測到時間常數 {tau_ms} ms。儲能電容是多少 µF？",
+        "conditions": [
+          "電阻 {R} Ω",
+          "時間常數 {tau_ms} ms"
+        ]
+      },
+      {
+        "id": "timer",
+        "model": "flash_find_capacitance",
+        "prompt": "延時燈電阻 {R} Ω，時間常數 {tau_ms} ms。電容是多少 µF？",
+        "conditions": [
+          "電阻 {R} Ω",
+          "時間常數 {tau_ms} ms"
+        ]
+      }
+    ],
+    "steps": [
+      "τ = R C，所以 C = τ / R。",
+      "τ 先換成秒，或直接用毫秒與微法的關係。",
+      "C = {tau_ms} × 1000 / {R} = {C_uF} µF。"
+    ],
+    "substitution": "C = {tau_ms} * 1000 / {R} = {C_uF} µF",
+    "unit_check": "毫秒除以歐姆再乘 1000，得到微法。",
+    "common_mistakes": [
+      "用 R / τ，把電容和電導的角色對調。",
+      "毫秒沒有換成秒。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "tr-predict",
+    "topic": "transient",
+    "difficulty": "medium",
+    "thinking": "predict",
+    "type": "numeric",
+    "model": "tau_after_resistor_doubles",
+    "connection": "閃光充電迴路的電阻換成 2 倍，電容不變。",
+    "assumptions": [
+      "仍然是串聯 RC",
+      "只有電阻加倍"
+    ],
+    "source_ids": [
+      "aac_tau",
+      "nycu_ch3"
+    ],
+    "variables": [
+      {
+        "name": "R",
+        "values": [
+          1000,
+          2000
+        ]
+      },
+      {
+        "name": "C_uF",
+        "values": [
+          50,
+          100
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "old_ms",
+        "formula": "R * C_uF * 1e-3"
+      },
+      {
+        "name": "new_ms",
+        "formula": "2 * R * C_uF * 1e-3"
+      }
+    ],
+    "answer_formula": "new_ms",
+    "unit": "ms",
+    "scenarios": [
+      {
+        "id": "flash",
+        "model": "tau_after_resistor_doubles",
+        "prompt": "相機閃光原本用 {R} Ω 與 {C_uF} µF，時間常數 {old_ms} ms。充電電阻改成原來的 2 倍，電容不變。新的時間常數是多少 ms？",
+        "conditions": [
+          "原電阻 {R} Ω",
+          "電容 {C_uF} µF"
+        ]
+      },
+      {
+        "id": "timer",
+        "model": "tau_after_resistor_doubles",
+        "prompt": "延時燈的電阻從 {R} Ω 換成 2 倍，電容仍是 {C_uF} µF。時間常數變成多少 ms？",
+        "conditions": [
+          "原電阻 {R} Ω",
+          "電容 {C_uF} µF"
+        ]
+      }
+    ],
+    "steps": [
+      "τ 與 R 成正比。",
+      "原來是 {old_ms} ms。",
+      "電阻加倍後，τ = {new_ms} ms。"
+    ],
+    "substitution": "tau = 2 * {R} * {C_uF} * 1e-3 = {new_ms} ms",
+    "unit_check": "結果仍是毫秒。",
+    "common_mistakes": [
+      "電阻加倍時時間常數減半。",
+      "電容也一起加倍。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "tr-error",
+    "topic": "transient",
+    "difficulty": "hard",
+    "thinking": "error",
+    "type": "choice",
+    "model": "capacitor_dc_steady_check",
+    "connection": "閃光電容已經接在直流電源上很久，電壓不再變化。",
+    "assumptions": [
+      "理想電容",
+      "已進入直流穩態"
+    ],
+    "source_ids": [
+      "aac_rc",
+      "nycu_ch3"
+    ],
+    "variables": [
+      {
+        "name": "Vs",
+        "values": [
+          6,
+          12
+        ]
+      },
+      {
+        "name": "R",
+        "values": [
+          1000
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "I",
+        "formula": "Vs / R * 1000"
+      }
+    ],
+    "answer_formula": "1",
+    "options": [
+      {
+        "text": "電容應看成開路，穩態電流是 0，不是 {I} mA",
+        "formula": "1"
+      },
+      {
+        "text": "同學是對的，電容穩態時像短路，電流約 {I} mA",
+        "formula": "0"
+      },
+      {
+        "text": "電容電壓會一直停在 0 V",
+        "formula": "2"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "flash",
+        "model": "capacitor_dc_steady_check",
+        "prompt": "閃光充電迴路的電源是 {Vs} V，電阻 {R} Ω，電容已接上很久。同學說電容在直流穩態像短路，電流約 {I} mA。哪一個說法正確？",
+        "conditions": [
+          "電源 {Vs} V",
+          "電阻 {R} Ω"
+        ]
+      },
+      {
+        "id": "timer",
+        "model": "capacitor_dc_steady_check",
+        "prompt": "延時燈的 {Vs} V 與 {R} Ω 已接上電容很久。同學把電容當成短路。哪一個說法正確？",
+        "conditions": [
+          "電源 {Vs} V",
+          "電阻 {R} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "直流穩態時電容電壓不再變化。",
+      "i = C dv/dt = 0，所以電容支路是開路。",
+      "短路才會讓電流維持 {Vs}/{R} = {I} mA。穩態電容電壓會接近電源電壓。"
+    ],
+    "substitution": "iC = 0 mA，不是 {Vs} / {R} = {I} mA",
+    "unit_check": "穩態電容電流是 0 mA。",
+    "common_mistakes": [
+      "把電容和電感的直流穩態模型對調。",
+      "用剛充電的瞬間回答穩態。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "tr-fault",
+    "topic": "transient",
+    "difficulty": "hard",
+    "thinking": "fault",
+    "type": "numeric",
+    "model": "flash_capacitor_shorted",
+    "connection": "儲能電容被短路，充電電阻單獨跨在直流電源上。",
+    "assumptions": [
+      "電容故障成短路",
+      "電阻沒有開路",
+      "電流會一直存在，不是只有暫態"
+    ],
+    "source_ids": [
+      "aac_rc",
+      "aac_ohm",
+      "nycu_ch3"
+    ],
+    "variables": [
+      {
+        "name": "Vs",
+        "values": [
+          6,
+          12
+        ]
+      },
+      {
+        "name": "R",
+        "values": [
+          100,
+          200
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "I_mA",
+        "formula": "Vs / R * 1000"
+      }
+    ],
+    "answer_formula": "I_mA",
+    "unit": "mA",
+    "scenarios": [
+      {
+        "id": "flash",
+        "model": "flash_capacitor_shorted",
+        "prompt": "相機閃光的電源是 {Vs} V，充電電阻 {R} Ω。儲能電容被短路後，電阻上的電流是多少 mA？",
+        "conditions": [
+          "電源 {Vs} V",
+          "充電電阻 {R} Ω",
+          "電容已短路"
+        ]
+      },
+      {
+        "id": "timer",
+        "model": "flash_capacitor_shorted",
+        "prompt": "延時燈電源 {Vs} V、電阻 {R} Ω。電容短路後，電阻電流是多少 mA？",
+        "conditions": [
+          "電源 {Vs} V",
+          "電阻 {R} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "電容短路後，它的電壓是 0，電阻直接跨在電源上。",
+      "這不再是會結束的充電暫態。",
+      "I = {Vs} / {R} = {I_mA} mA。"
+    ],
+    "substitution": "I = {Vs} / {R} = {I_mA} mA",
+    "unit_check": "伏特除以歐姆是安培，再換成毫安。",
+    "common_mistakes": [
+      "電容故障後電流一定是 0。",
+      "仍用時間常數去算一個會衰減到 0 的電流。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "ph-forward",
+    "topic": "phasor",
+    "difficulty": "easy",
+    "thinking": "forward",
+    "type": "numeric",
+    "model": "fan_run_capacitor",
+    "connection": "換氣扇的運轉電容單獨接在正弦電源上，本題只求容抗。",
+    "assumptions": [
+      "穩態正弦",
+      "電容是理想的"
+    ],
+    "source_ids": [
+      "aac_xc",
+      "nycu_ch5"
+    ],
+    "variables": [
+      {
+        "name": "f",
+        "values": [
+          50,
+          60
+        ]
+      },
+      {
+        "name": "C_uF",
+        "values": [
+          10,
+          20
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Xc",
+        "formula": "1 / (2 * pi * f * C_uF * 1e-6)"
+      }
+    ],
+    "answer_formula": "Xc",
+    "unit": "Ω",
+    "abs_tol": 1,
+    "scenarios": [
+      {
+        "id": "fan",
+        "model": "fan_run_capacitor",
+        "prompt": "換氣扇的運轉電容是 {C_uF} µF，電源頻率 {f} Hz。這顆電容的容抗是多少 Ω？",
+        "conditions": [
+          "頻率 {f} Hz",
+          "電容 {C_uF} µF"
+        ]
+      },
+      {
+        "id": "pump",
+        "model": "fan_run_capacitor",
+        "prompt": "抽風機起動電容在本題看成 {C_uF} µF 的理想電容，工作在 {f} Hz。容抗是多少 Ω？",
+        "conditions": [
+          "頻率 {f} Hz",
+          "電容 {C_uF} µF"
+        ]
+      }
+    ],
+    "steps": [
+      "容抗 Xc = 1 / (2 π f C)。",
+      "電容換成法拉，頻率是 {f} Hz。",
+      "Xc = {Xc} Ω。"
+    ],
+    "substitution": "Xc = 1 / (2 * pi * {f} * {C_uF} * 1e-6) = {Xc} Ω",
+    "unit_check": "赫茲乘法拉的倒數是歐姆。",
+    "common_mistakes": [
+      "公式寫成 2 π f C。",
+      "微法沒有換成法拉。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "rel_tol": 0.01
+  },
+  {
+    "id": "ph-compare",
+    "topic": "phasor",
+    "difficulty": "easy",
+    "thinking": "compare",
+    "type": "choice",
+    "model": "heater_vs_fan_pf",
+    "connection": "熱水壺是純電阻；換氣扇在本題看成電阻串聯電抗。兩者都接正弦電源。",
+    "assumptions": [
+      "熱水壺的功率因數是 1",
+      "風扇用串聯 R 與 X 的模型",
+      "X 取大小"
+    ],
+    "source_ids": [
+      "aac_pf",
+      "aac_power",
+      "nycu_ch5"
+    ],
+    "variables": [
+      {
+        "name": "R",
+        "values": [
+          30,
+          40
+        ]
+      },
+      {
+        "name": "X",
+        "values": [
+          30,
+          40
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "pf",
+        "formula": "R / hypot(R, X)"
+      }
+    ],
+    "answer_formula": "1",
+    "options": [
+      {
+        "text": "熱水壺較高，功率因數是 1",
+        "formula": "1"
+      },
+      {
+        "text": "風扇較高，功率因數是 {pf}",
+        "formula": "R / hypot(R, X)"
+      },
+      {
+        "text": "兩者都是 {pf}",
+        "formula": "0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "kitchen",
+        "model": "heater_vs_fan_pf",
+        "prompt": "電熱水壺看成純電阻。換氣扇看成 {R} Ω 串聯電抗 {X} Ω。哪一個負載的功率因數比較高？",
+        "conditions": [
+          "風扇電阻 {R} Ω",
+          "風扇電抗 {X} Ω",
+          "水壺是純電阻"
+        ]
+      },
+      {
+        "id": "room",
+        "model": "heater_vs_fan_pf",
+        "prompt": "電暖器看成純電阻。台式風扇看成 {R} Ω 串 {X} Ω。哪一個功率因數比較高？",
+        "conditions": [
+          "風扇的電阻 {R} Ω",
+          "風扇的電抗 {X} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "純電阻的功率因數是 1。",
+      "串聯電抗後，pf = R / |Z| = {pf}，小於 1。",
+      "所以熱水壺或電暖器的功率因數較高。"
+    ],
+    "substitution": "pf_fan = {R} / hypot({R}, {X}) = {pf}",
+    "unit_check": "功率因數沒有單位，1 代表電壓與電流同相。",
+    "common_mistakes": [
+      "有電抗的負載功率因數較高。",
+      "把 R 和 X 相加後當成功率因數。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "ph-reverse",
+    "topic": "phasor",
+    "difficulty": "medium",
+    "thinking": "reverse",
+    "type": "numeric",
+    "model": "fan_resistance_from_pf",
+    "connection": "風扇負載已簡化成電阻串聯電抗，已知功率因數與電抗大小。",
+    "assumptions": [
+      "功率因數是 R / |Z|",
+      "電抗只取大小",
+      "電壓電流使用有效值"
+    ],
+    "source_ids": [
+      "aac_pf",
+      "aac_z",
+      "nycu_ch5"
+    ],
+    "variables": [
+      {
+        "name": "pf",
+        "values": [
+          0.6,
+          0.8
+        ]
+      },
+      {
+        "name": "X",
+        "values": [
+          30,
+          40
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "R",
+        "formula": "pf * X / sqrt(1 - pf * pf)"
+      }
+    ],
+    "constraints": [
+      "1 - pf"
+    ],
+    "answer_formula": "R",
+    "unit": "Ω",
+    "scenarios": [
+      {
+        "id": "fan",
+        "model": "fan_resistance_from_pf",
+        "prompt": "換氣扇在本題看成電阻串聯電抗。功率因數 {pf}，電抗大小 {X} Ω。等效電阻是多少 Ω？",
+        "conditions": [
+          "功率因數 {pf}",
+          "電抗 {X} Ω"
+        ]
+      },
+      {
+        "id": "blower",
+        "model": "fan_resistance_from_pf",
+        "prompt": "鼓風機的串聯模型給出功率因數 {pf}、電抗 {X} Ω。電阻是多少 Ω？",
+        "conditions": [
+          "功率因數 {pf}",
+          "電抗 {X} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "pf = R / √(R²+X²)。",
+      "整理後 R = pf × X / √(1−pf²)。",
+      "R = {pf} × {X} / √(1−{pf}²) = {R} Ω。"
+    ],
+    "substitution": "R = {pf} * {X} / sqrt(1 - {pf} * {pf}) = {R} Ω",
+    "unit_check": "功率因數沒有單位，乘上歐姆後仍是歐姆。",
+    "common_mistakes": [
+      "用 X × pf 直接當電阻，忘了分母。",
+      "把電抗當成電阻。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "ph-predict",
+    "topic": "phasor",
+    "difficulty": "medium",
+    "thinking": "predict",
+    "type": "numeric",
+    "model": "capacitor_frequency_rises",
+    "connection": "同一顆運轉電容，電源頻率從原來的值提高。",
+    "assumptions": [
+      "電容值不變",
+      "仍是理想電容的穩態容抗"
+    ],
+    "source_ids": [
+      "aac_xc",
+      "nycu_ch5"
+    ],
+    "variables": [
+      {
+        "name": "f1",
+        "values": [
+          50
+        ]
+      },
+      {
+        "name": "f2",
+        "values": [
+          60,
+          100
+        ]
+      },
+      {
+        "name": "C_uF",
+        "values": [
+          10,
+          20
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Xc1",
+        "formula": "1 / (2 * pi * f1 * C_uF * 1e-6)"
+      },
+      {
+        "name": "Xc2",
+        "formula": "1 / (2 * pi * f2 * C_uF * 1e-6)"
+      }
+    ],
+    "constraints": [
+      "f2 - f1"
+    ],
+    "answer_formula": "Xc2",
+    "unit": "Ω",
+    "abs_tol": 1,
+    "scenarios": [
+      {
+        "id": "fan",
+        "model": "capacitor_frequency_rises",
+        "prompt": "換氣扇電容 {C_uF} µF。頻率從 {f1} Hz 改到 {f2} Hz。新的容抗是多少 Ω？",
+        "conditions": [
+          "電容 {C_uF} µF",
+          "原頻率 {f1} Hz",
+          "新頻率 {f2} Hz"
+        ]
+      },
+      {
+        "id": "pump",
+        "model": "capacitor_frequency_rises",
+        "prompt": "抽風機電容 {C_uF} µF，工作頻率由 {f1} Hz 提高到 {f2} Hz。容抗變成多少 Ω？",
+        "conditions": [
+          "電容 {C_uF} µF",
+          "原來 {f1} Hz",
+          "後來 {f2} Hz"
+        ]
+      }
+    ],
+    "steps": [
+      "容抗與頻率成反比。",
+      "原來約是 {Xc1} Ω。",
+      "新頻率下 Xc = 1 / (2 π × {f2} × C) = {Xc2} Ω。"
+    ],
+    "substitution": "Xc2 = 1 / (2 * pi * {f2} * {C_uF} * 1e-6) = {Xc2} Ω",
+    "unit_check": "容抗的單位仍是歐姆。",
+    "common_mistakes": [
+      "頻率提高時容抗也提高。",
+      "把電容值跟著頻率改掉。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "rel_tol": 0.01
+  },
+  {
+    "id": "ph-error",
+    "topic": "phasor",
+    "difficulty": "hard",
+    "thinking": "error",
+    "type": "choice",
+    "model": "impedance_sum_check",
+    "connection": "風扇線圈看成電阻與電抗串聯。",
+    "assumptions": [
+      "同學把電阻和電抗直接相加"
+    ],
+    "source_ids": [
+      "aac_z",
+      "nycu_ch5"
+    ],
+    "variables": [
+      {
+        "name": "R",
+        "values": [
+          30,
+          40
+        ]
+      },
+      {
+        "name": "X",
+        "values": [
+          40,
+          30
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Z",
+        "formula": "hypot(R, X)"
+      },
+      {
+        "name": "sm",
+        "formula": "R + X"
+      }
+    ],
+    "answer_formula": "hypot(R, X)",
+    "options": [
+      {
+        "text": "正確大小是 {Z} Ω，要用平方和再開根號",
+        "formula": "hypot(R, X)"
+      },
+      {
+        "text": "同學是對的，阻抗是 {sm} Ω",
+        "formula": "R + X"
+      },
+      {
+        "text": "阻抗就是電阻 {R} Ω",
+        "formula": "R"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "fan",
+        "model": "impedance_sum_check",
+        "prompt": "換氣扇線圈看成 {R} Ω 串聯電抗 {X} Ω。同學把兩個歐姆數相加。哪一個說法正確？",
+        "conditions": [
+          "電阻 {R} Ω",
+          "電抗 {X} Ω"
+        ]
+      },
+      {
+        "id": "blower",
+        "model": "impedance_sum_check",
+        "prompt": "鼓風機的串聯模型是電阻 {R} Ω、電抗 {X} Ω。同學用 R+X。哪一個說法正確？",
+        "conditions": [
+          "電阻 {R} Ω",
+          "電抗 {X} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "串聯阻抗的大小是 √(R²+X²)。",
+      "直接相加得到 {sm} Ω，不是阻抗大小。",
+      "|Z| = {Z} Ω。"
+    ],
+    "substitution": "|Z| = hypot({R}, {X}) = {Z} Ω",
+    "unit_check": "電阻和電抗都是歐姆，但它們要先平方再相加。",
+    "common_mistakes": [
+      "接受 R+X。",
+      "忽略電抗，只留下電阻。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "ph-fault",
+    "topic": "phasor",
+    "difficulty": "hard",
+    "thinking": "fault",
+    "type": "numeric",
+    "model": "run_capacitor_open",
+    "connection": "運轉電容支路開路後，剩下的路徑只有題目給的線圈電阻。",
+    "assumptions": [
+      "電容支路已開路，電抗不再在迴路裡",
+      "剩下的線圈用純電阻 R 代表",
+      "電壓是有效值"
+    ],
+    "source_ids": [
+      "aac_z",
+      "aac_ohm",
+      "nycu_ch5"
+    ],
+    "variables": [
+      {
+        "name": "V",
+        "values": [
+          110
+        ]
+      },
+      {
+        "name": "R",
+        "values": [
+          30,
+          40
+        ]
+      },
+      {
+        "name": "X",
+        "values": [
+          30,
+          40
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Iold",
+        "formula": "V / hypot(R, X)"
+      },
+      {
+        "name": "Inew",
+        "formula": "V / R"
+      }
+    ],
+    "answer_formula": "Inew",
+    "unit": "A",
+    "abs_tol": 0.05,
+    "scenarios": [
+      {
+        "id": "fan",
+        "model": "run_capacitor_open",
+        "prompt": "換氣扇原本是 {R} Ω 串聯電抗 {X} Ω，接到有效值 {V} V。運轉電容支路開路後，本題把剩下的路徑看成純電阻 {R} Ω。電流變成多少 A？",
+        "conditions": [
+          "電壓 {V} V",
+          "線圈電阻 {R} Ω",
+          "原電抗 {X} Ω"
+        ]
+      },
+      {
+        "id": "blower",
+        "model": "run_capacitor_open",
+        "prompt": "鼓風機 {V} V，原本電阻 {R} Ω、電抗 {X} Ω。電容開路後只剩 {R} Ω。電流是多少 A？",
+        "conditions": [
+          "電壓 {V} V",
+          "剩餘電阻 {R} Ω",
+          "原電抗 {X} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "電容支路開路後，電抗退出迴路。",
+      "剩下 I = V / R。",
+      "I = {V} / {R} = {Inew} A。原本約是 {Iold} A。"
+    ],
+    "substitution": "I = {V} / {R} = {Inew} A",
+    "unit_check": "有效值伏特除以歐姆是有效值安培。",
+    "common_mistakes": [
+      "電容開路後仍用 √(R²+X²)。",
+      "認為開路後電流一定是 0，忽略剩下的電阻路徑。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "rel_tol": 0.01
+  },
+  {
+    "id": "oa-forward",
+    "topic": "opamp",
+    "difficulty": "easy",
+    "thinking": "forward",
+    "type": "numeric",
+    "model": "mic_inverting_preamp",
+    "connection": "麥克風信號進反相輸入，Rf 從輸出回授，正輸入接地。",
+    "assumptions": [
+      "理想運算放大器",
+      "負回授且尚未飽和",
+      "兩顆電阻都以 kΩ 給定"
+    ],
+    "source_ids": [
+      "aac_gain",
+      "nycu_ch6"
+    ],
+    "variables": [
+      {
+        "name": "Vin",
+        "values": [
+          0.05,
+          0.1
+        ]
+      },
+      {
+        "name": "Rin_k",
+        "values": [
+          10
+        ]
+      },
+      {
+        "name": "Rf_k",
+        "values": [
+          20,
+          40
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Vo",
+        "formula": "-(Rf_k / Rin_k) * Vin"
+      }
+    ],
+    "answer_formula": "Vo",
+    "unit": "V",
+    "abs_tol": 0.01,
+    "scenarios": [
+      {
+        "id": "mic",
+        "model": "mic_inverting_preamp",
+        "prompt": "麥克風前級是反相放大器。Rin = {Rin_k} kΩ，Rf = {Rf_k} kΩ，信號 {Vin} V。輸出是多少 V？",
+        "conditions": [
+          "Rin = {Rin_k} kΩ",
+          "Rf = {Rf_k} kΩ",
+          "Vin = {Vin} V"
+        ]
+      },
+      {
+        "id": "pickup",
+        "model": "mic_inverting_preamp",
+        "prompt": "拾音器接到反相級，輸入電阻 {Rin_k} kΩ，回授 {Rf_k} kΩ，信號 {Vin} V。輸出是多少 V？",
+        "conditions": [
+          "輸入電阻 {Rin_k} kΩ",
+          "回授 {Rf_k} kΩ",
+          "信號 {Vin} V"
+        ]
+      }
+    ],
+    "diagram": {
+      "kind": "opamp",
+      "mode": "inv",
+      "title": "麥克風前級",
+      "vin": "{Vin} V",
+      "rin": "{Rin_k} kΩ",
+      "rf": "{Rf_k} kΩ"
+    },
+    "steps": [
+      "反相增益 Vo = −(Rf/Rin) Vin。",
+      "比值是 {Rf_k}/{Rin_k}。",
+      "Vo = −({Rf_k}/{Rin_k}) × {Vin} = {Vo} V。"
+    ],
+    "substitution": "Vo = -({Rf_k} / {Rin_k}) * {Vin} = {Vo} V",
+    "unit_check": "電阻比值沒有單位，乘上伏特後是伏特。負號表示反相。",
+    "common_mistakes": [
+      "忘了負號。",
+      "把 Rf 和 Rin 對調。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "rel_tol": 0.01
+  },
+  {
+    "id": "oa-compare",
+    "topic": "opamp",
+    "difficulty": "easy",
+    "thinking": "compare",
+    "type": "choice",
+    "model": "compare_inv_and_noninv",
+    "connection": "同一對電阻分別接成反相與非反相，輸入信號大小相同，都未飽和。",
+    "assumptions": [
+      "理想運算放大器",
+      "負回授成立",
+      "比較的是輸出電壓的絕對值"
+    ],
+    "source_ids": [
+      "aac_gain",
+      "nycu_ch6"
+    ],
+    "variables": [
+      {
+        "name": "Vin",
+        "values": [
+          0.1,
+          0.2
+        ]
+      },
+      {
+        "name": "Rin_k",
+        "values": [
+          10
+        ]
+      },
+      {
+        "name": "Rf_k",
+        "values": [
+          20,
+          40
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Ginv",
+        "formula": "Rf_k / Rin_k"
+      },
+      {
+        "name": "Gnon",
+        "formula": "1 + Rf_k / Rin_k"
+      },
+      {
+        "name": "Ainv",
+        "formula": "Ginv * Vin"
+      },
+      {
+        "name": "Anon",
+        "formula": "Gnon * Vin"
+      }
+    ],
+    "answer_formula": "1 + Rf_k / Rin_k",
+    "options": [
+      {
+        "text": "非反相的輸出絕對值較大，是 {Anon} V",
+        "formula": "1 + Rf_k / Rin_k"
+      },
+      {
+        "text": "反相的輸出絕對值較大，是 {Ainv} V",
+        "formula": "Rf_k / Rin_k"
+      },
+      {
+        "text": "一樣大，因為電阻相同",
+        "formula": "0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "mic",
+        "model": "compare_inv_and_noninv",
+        "prompt": "麥克風信號 {Vin} V。同一對電阻 Rin = {Rin_k} kΩ、Rf = {Rf_k} kΩ，分別接成反相與非反相，都未飽和。哪一種輸出的絕對值比較大？",
+        "conditions": [
+          "信號 {Vin} V",
+          "Rin = {Rin_k} kΩ",
+          "Rf = {Rf_k} kΩ"
+        ]
+      },
+      {
+        "id": "line",
+        "model": "compare_inv_and_noninv",
+        "prompt": "線路信號 {Vin} V，電阻 {Rin_k} kΩ 與 {Rf_k} kΩ。反相接法與非反相接法都沒有飽和。哪一個輸出絕對值比較大？",
+        "conditions": [
+          "信號 {Vin} V",
+          "Rin = {Rin_k} kΩ",
+          "Rf = {Rf_k} kΩ"
+        ]
+      }
+    ],
+    "steps": [
+      "反相增益的大小是 Rf/Rin = {Ginv}。",
+      "非反相增益是 1 + Rf/Rin = {Gnon}。",
+      "同一個輸入下，非反相的輸出絕對值是 {Anon} V，比 {Ainv} V 大。"
+    ],
+    "substitution": "|Vo_non| = (1 + {Rf_k} / {Rin_k}) * {Vin} = {Anon} V",
+    "unit_check": "增益沒有單位，乘上伏特後是伏特。",
+    "common_mistakes": [
+      "電阻相同就認為兩種接法輸出相同。",
+      "忘了非反相增益要加 1。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "oa-reverse",
+    "topic": "opamp",
+    "difficulty": "medium",
+    "thinking": "reverse",
+    "type": "numeric",
+    "model": "headphone_find_feedback",
+    "connection": "反相耳機放大器已經選定輸入電阻，要選回授電阻來達到指定的增益大小。",
+    "assumptions": [
+      "理想反相放大器",
+      "增益大小指輸出與輸入比值的絕對值",
+      "輸出與輸入反相"
+    ],
+    "source_ids": [
+      "aac_gain",
+      "nycu_ch6"
+    ],
+    "variables": [
+      {
+        "name": "G",
+        "values": [
+          2,
+          4,
+          5
+        ]
+      },
+      {
+        "name": "Rin_k",
+        "values": [
+          5,
+          10
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Rf_k",
+        "formula": "G * Rin_k"
+      }
+    ],
+    "answer_formula": "Rf_k",
+    "unit": "kΩ",
+    "scenarios": [
+      {
+        "id": "phone",
+        "model": "headphone_find_feedback",
+        "prompt": "耳機用反相放大器，輸入電阻 {Rin_k} kΩ，希望增益大小是 {G} 倍。回授電阻要多少 kΩ？",
+        "conditions": [
+          "Rin = {Rin_k} kΩ",
+          "增益大小 {G} 倍"
+        ]
+      },
+      {
+        "id": "mic",
+        "model": "headphone_find_feedback",
+        "prompt": "麥克風後級是反相接法，Rin = {Rin_k} kΩ，需要 {G} 倍的增益大小。Rf 是多少 kΩ？",
+        "conditions": [
+          "輸入電阻 {Rin_k} kΩ",
+          "目標增益大小 {G}"
+        ]
+      }
+    ],
+    "steps": [
+      "反相增益的大小是 Rf / Rin。",
+      "所以 Rf = G × Rin。",
+      "Rf = {G} × {Rin_k} = {Rf_k} kΩ。"
+    ],
+    "substitution": "Rf = {G} * {Rin_k} = {Rf_k} kΩ",
+    "unit_check": "增益大小沒有單位，乘上 kΩ 後仍是 kΩ。",
+    "common_mistakes": [
+      "用 Rin / G。",
+      "套用非反相的 1 + Rf/Rg。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "oa-predict",
+    "topic": "opamp",
+    "difficulty": "medium",
+    "thinking": "predict",
+    "type": "numeric",
+    "model": "inverting_input_changes",
+    "connection": "反相放大器的電阻不變，輸入信號改成新的電壓，輸出仍未飽和。",
+    "assumptions": [
+      "理想反相放大器",
+      "新的輸出沒有碰到飽和電壓",
+      "電阻不變"
+    ],
+    "source_ids": [
+      "aac_gain",
+      "nycu_ch6"
+    ],
+    "variables": [
+      {
+        "name": "V1",
+        "values": [
+          0.05,
+          0.1
+        ]
+      },
+      {
+        "name": "V2",
+        "values": [
+          0.2,
+          0.4
+        ]
+      },
+      {
+        "name": "Rin_k",
+        "values": [
+          10
+        ]
+      },
+      {
+        "name": "Rf_k",
+        "values": [
+          20
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "old",
+        "formula": "-(Rf_k / Rin_k) * V1"
+      },
+      {
+        "name": "new",
+        "formula": "-(Rf_k / Rin_k) * V2"
+      }
+    ],
+    "constraints": [
+      "V2 - V1"
+    ],
+    "answer_formula": "new",
+    "unit": "V",
+    "abs_tol": 0.01,
+    "scenarios": [
+      {
+        "id": "mic",
+        "model": "inverting_input_changes",
+        "prompt": "麥克風前級 Rin = {Rin_k} kΩ、Rf = {Rf_k} kΩ。信號從 {V1} V 變成 {V2} V，電阻不變，輸出未飽和。新的輸出是多少 V？",
+        "conditions": [
+          "Rin = {Rin_k} kΩ",
+          "Rf = {Rf_k} kΩ",
+          "原信號 {V1} V",
+          "新信號 {V2} V"
+        ]
+      },
+      {
+        "id": "line",
+        "model": "inverting_input_changes",
+        "prompt": "反相線路放大器的電阻是 {Rin_k} kΩ 與 {Rf_k} kΩ。輸入由 {V1} V 改為 {V2} V，仍未飽和。輸出變成多少 V？",
+        "conditions": [
+          "Rin = {Rin_k} kΩ",
+          "Rf = {Rf_k} kΩ",
+          "原來 {V1} V",
+          "後來 {V2} V"
+        ]
+      }
+    ],
+    "steps": [
+      "增益維持 −Rf/Rin。",
+      "原來輸出是 {old} V。",
+      "新輸出 Vo = −({Rf_k}/{Rin_k}) × {V2} = {new} V。"
+    ],
+    "substitution": "Vo = -({Rf_k} / {Rin_k}) * {V2} = {new} V",
+    "unit_check": "結果是伏特，負號表示反相。",
+    "common_mistakes": [
+      "輸入加倍以外的改變被忽略時，仍用舊的輸入電壓。",
+      "輸出進入飽和仍用線性增益。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "rel_tol": 0.01
+  },
+  {
+    "id": "oa-error",
+    "topic": "opamp",
+    "difficulty": "hard",
+    "thinking": "error",
+    "type": "choice",
+    "model": "forgot_inverting_sign",
+    "connection": "反相麥克風前級，負回授且未飽和。",
+    "assumptions": [
+      "同學算出正確的絕對值，但漏了負號"
+    ],
+    "source_ids": [
+      "aac_gain",
+      "nycu_ch6"
+    ],
+    "variables": [
+      {
+        "name": "Vin",
+        "values": [
+          0.1,
+          0.2
+        ]
+      },
+      {
+        "name": "Rin_k",
+        "values": [
+          10
+        ]
+      },
+      {
+        "name": "Rf_k",
+        "values": [
+          20,
+          40
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Vo",
+        "formula": "-(Rf_k / Rin_k) * Vin"
+      },
+      {
+        "name": "pos",
+        "formula": "(Rf_k / Rin_k) * Vin"
+      }
+    ],
+    "answer_formula": "-(Rf_k / Rin_k) * Vin",
+    "options": [
+      {
+        "text": "正確是 {Vo} V，反相級要有負號",
+        "formula": "-(Rf_k / Rin_k) * Vin"
+      },
+      {
+        "text": "同學是對的，輸出是 {pos} V",
+        "formula": "(Rf_k / Rin_k) * Vin"
+      },
+      {
+        "text": "輸出等於輸入 {Vin} V",
+        "formula": "Vin"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "mic",
+        "model": "forgot_inverting_sign",
+        "prompt": "麥克風反相前級 Rin = {Rin_k} kΩ，Rf = {Rf_k} kΩ，Vin = {Vin} V，未飽和。同學得到正的 {pos} V。哪一個說法正確？",
+        "conditions": [
+          "Rin = {Rin_k} kΩ",
+          "Rf = {Rf_k} kΩ",
+          "Vin = {Vin} V"
+        ]
+      },
+      {
+        "id": "pickup",
+        "model": "forgot_inverting_sign",
+        "prompt": "拾音器反相級使用 {Rin_k} kΩ 與 {Rf_k} kΩ，信號 {Vin} V。同學漏看負號。哪一個說法正確？",
+        "conditions": [
+          "Rin = {Rin_k} kΩ",
+          "Rf = {Rf_k} kΩ",
+          "信號 {Vin} V"
+        ]
+      }
+    ],
+    "steps": [
+      "反相輸出是 Vo = −(Rf/Rin) Vin。",
+      "同學的正值 {pos} V 只對了大小。",
+      "正確是 {Vo} V。"
+    ],
+    "substitution": "Vo = -({Rf_k} / {Rin_k}) * {Vin} = {Vo} V",
+    "unit_check": "伏特之前的負號表示與輸入反相。",
+    "common_mistakes": [
+      "接受沒有負號的答案。",
+      "把輸出看成跟輸入一樣。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "oa-fault",
+    "topic": "opamp",
+    "difficulty": "hard",
+    "thinking": "fault",
+    "type": "numeric",
+    "model": "feedback_resistor_open",
+    "connection": "反相放大器的回授電阻開路，負回授消失，輸出進入飽和。",
+    "assumptions": [
+      "反相輸入是正電壓",
+      "飽和電壓的大小由題目給定",
+      "開路後不再使用 Rf/Rin 的線性增益"
+    ],
+    "source_ids": [
+      "aac_fb",
+      "nycu_ch6"
+    ],
+    "variables": [
+      {
+        "name": "Vin",
+        "values": [
+          0.1,
+          0.2
+        ]
+      },
+      {
+        "name": "Vsat",
+        "values": [
+          10,
+          12
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Vo",
+        "formula": "-Vsat"
+      }
+    ],
+    "answer_formula": "Vo",
+    "unit": "V",
+    "scenarios": [
+      {
+        "id": "mic",
+        "model": "feedback_resistor_open",
+        "prompt": "麥克風反相級的輸入是正的 {Vin} V。回授電阻開路，飽和電壓大小是 {Vsat} V。輸出大約是多少 V？",
+        "conditions": [
+          "輸入 {Vin} V，極性為正",
+          "飽和電壓大小 {Vsat} V",
+          "回授路徑已開路"
+        ]
+      },
+      {
+        "id": "line",
+        "model": "feedback_resistor_open",
+        "prompt": "反相線路放大器接到正的 {Vin} V，回授電阻開路，飽和電壓大小 {Vsat} V。輸出大約是多少 V？",
+        "conditions": [
+          "正輸入 {Vin} V",
+          "飽和電壓大小 {Vsat} V"
+        ]
+      }
+    ],
+    "steps": [
+      "回授開路後，不能再用 −Rf/Rin。",
+      "反相輸入為正時，輸出往負向飽和。",
+      "Vo ≈ −{Vsat} V。"
+    ],
+    "substitution": "Vo = -{Vsat} = {Vo} V",
+    "unit_check": "飽和電壓的單位是伏特，負號表示方向。",
+    "common_mistakes": [
+      "開路後仍用線性增益。",
+      "正輸入卻把輸出飽和到正電壓。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "db-forward",
+    "topic": "diode_bjt",
+    "difficulty": "easy",
+    "thinking": "forward",
+    "type": "numeric",
+    "model": "usb_led_drop",
+    "connection": "USB 電壓源、順向 LED 與限流電阻串成一條迴路。",
+    "assumptions": [
+      "LED 順向導通",
+      "順向壓降用本題給定的常數",
+      "不能把 LED 看成一般電阻",
+      "USB 在本題是理想電壓源"
+    ],
+    "source_ids": [
+      "aac_diode",
+      "aac_kvl",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Vs",
+        "values": [
+          5
+        ]
+      },
+      {
+        "name": "Vf",
+        "values": [
+          1.8,
+          2
+        ]
+      },
+      {
+        "name": "R",
+        "values": [
+          100,
+          150,
+          220
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "I_mA",
+        "formula": "(Vs - Vf) / R * 1000"
+      }
+    ],
+    "constraints": [
+      "Vs - Vf - 0.5"
+    ],
+    "answer_formula": "I_mA",
+    "unit": "mA",
+    "abs_tol": 0.1,
+    "scenarios": [
+      {
+        "id": "usb",
+        "model": "usb_led_drop",
+        "prompt": "USB 埠 {Vs} V。指示 LED 的順向壓降用 {Vf} V，再串 {R} Ω。LED 不是一般電阻。電流是多少 mA？",
+        "conditions": [
+          "USB 電壓 {Vs} V",
+          "順向壓降 {Vf} V",
+          "限流電阻 {R} Ω"
+        ]
+      },
+      {
+        "id": "key",
+        "model": "usb_led_drop",
+        "prompt": "鑰匙圈燈由 {Vs} V 供電，LED 順向壓降取 {Vf} V，限流電阻 {R} Ω。電流是多少 mA？",
+        "conditions": [
+          "電源 {Vs} V",
+          "順向壓降 {Vf} V",
+          "電阻 {R} Ω"
+        ]
+      }
+    ],
+    "diagram": {
+      "kind": "diode",
+      "title": "USB 指示燈",
+      "v": "{Vs} V",
+      "vf": "{Vf} V",
+      "r": "{R} Ω"
+    },
+    "steps": [
+      "電阻上的電壓是電源減去順向壓降。",
+      "I = (Vs − Vf) / R。",
+      "I = ({Vs}−{Vf}) / {R} = {I_mA} mA。"
+    ],
+    "substitution": "I = ({Vs} - {Vf}) / {R} = {I_mA} mA",
+    "unit_check": "伏特差除以歐姆是安培，再乘 1000 是毫安。",
+    "common_mistakes": [
+      "用電源電壓直接除以電阻。",
+      "只拿順向壓降去除電阻。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "rel_tol": 0.01
+  },
+  {
+    "id": "db-compare",
+    "topic": "diode_bjt",
+    "difficulty": "easy",
+    "thinking": "compare",
+    "type": "choice",
+    "model": "compare_two_leds",
+    "connection": "兩條支路都是同一顆 USB 電壓串聯相同的 LED 模型，再各串一顆不同的限流電阻。",
+    "assumptions": [
+      "兩顆 LED 的順向壓降相同",
+      "電流較大的那顆比較亮",
+      "都不看成一般電阻"
+    ],
+    "source_ids": [
+      "aac_diode",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Vs",
+        "values": [
+          5
+        ]
+      },
+      {
+        "name": "Vf",
+        "values": [
+          2
+        ]
+      },
+      {
+        "name": "R1",
+        "values": [
+          100,
+          150
+        ]
+      },
+      {
+        "name": "R2",
+        "values": [
+          220,
+          330
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "I1",
+        "formula": "(Vs - Vf) / R1 * 1000"
+      },
+      {
+        "name": "I2",
+        "formula": "(Vs - Vf) / R2 * 1000"
+      }
+    ],
+    "constraints": [
+      "R2 - R1"
+    ],
+    "answer_formula": "(Vs - Vf) / R1 * 1000",
+    "options": [
+      {
+        "text": "甲較亮，電流 {I1} mA",
+        "formula": "(Vs - Vf) / R1 * 1000"
+      },
+      {
+        "text": "乙較亮，電流 {I2} mA",
+        "formula": "(Vs - Vf) / R2 * 1000"
+      },
+      {
+        "text": "一樣亮，因為順向壓降都是 {Vf} V",
+        "formula": "0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "usb",
+        "model": "compare_two_leds",
+        "prompt": "同一個 {Vs} V USB 接兩顆指示燈，順向壓降都用 {Vf} V。甲串 {R1} Ω，乙串 {R2} Ω。哪一顆電流比較大？",
+        "conditions": [
+          "USB {Vs} V",
+          "順向壓降 {Vf} V",
+          "甲的電阻 {R1} Ω",
+          "乙的電阻 {R2} Ω"
+        ]
+      },
+      {
+        "id": "toy",
+        "model": "compare_two_leds",
+        "prompt": "玩具面板的兩顆 LED 都用 {Vf} V 的順向模型，電源 {Vs} V。甲的限流電阻 {R1} Ω，乙是 {R2} Ω。哪一顆較亮？",
+        "conditions": [
+          "電源 {Vs} V",
+          "順向壓降 {Vf} V",
+          "甲 {R1} Ω",
+          "乙 {R2} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "電流 I = (Vs−Vf)/R，順向壓降相同時電阻小的電流大。",
+      "甲是 {I1} mA。",
+      "乙是 {I2} mA，所以甲比較亮。"
+    ],
+    "substitution": "I1 = ({Vs} - {Vf}) / {R1} = {I1} mA",
+    "unit_check": "兩邊都是毫安。",
+    "common_mistakes": [
+      "順向壓降相同就認為一樣亮。",
+      "電阻大的比較亮。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "db-reverse",
+    "topic": "diode_bjt",
+    "difficulty": "medium",
+    "thinking": "reverse",
+    "type": "numeric",
+    "model": "led_find_resistor",
+    "connection": "USB 與 LED 已決定，要選限流電阻來得到指定電流。",
+    "assumptions": [
+      "LED 維持題目給的順向壓降",
+      "目標電流是流過這顆 LED 的電流"
+    ],
+    "source_ids": [
+      "aac_diode",
+      "aac_ohm",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Vs",
+        "values": [
+          5
+        ]
+      },
+      {
+        "name": "Vf",
+        "values": [
+          2
+        ]
+      },
+      {
+        "name": "I_mA",
+        "values": [
+          10,
+          15,
+          20
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "R",
+        "formula": "(Vs - Vf) / (I_mA / 1000)"
+      }
+    ],
+    "answer_formula": "R",
+    "unit": "Ω",
+    "scenarios": [
+      {
+        "id": "usb",
+        "model": "led_find_resistor",
+        "prompt": "USB {Vs} V 要點一顆順向壓降 {Vf} V 的 LED，希望電流 {I_mA} mA。限流電阻要多少 Ω？",
+        "conditions": [
+          "電源 {Vs} V",
+          "順向壓降 {Vf} V",
+          "目標電流 {I_mA} mA"
+        ]
+      },
+      {
+        "id": "toy",
+        "model": "led_find_resistor",
+        "prompt": "玩具指示燈的電源是 {Vs} V，LED 用 {Vf} V，目標電流 {I_mA} mA。電阻要選多少 Ω？",
+        "conditions": [
+          "電源 {Vs} V",
+          "順向壓降 {Vf} V",
+          "目標 {I_mA} mA"
+        ]
+      }
+    ],
+    "steps": [
+      "電阻電壓是 Vs − Vf。",
+      "R = (Vs − Vf) / I。",
+      "R = ({Vs}−{Vf}) / ({I_mA}/1000) = {R} Ω。"
+    ],
+    "substitution": "R = ({Vs} - {Vf}) / ({I_mA} / 1000) = {R} Ω",
+    "unit_check": "毫安要先換成安培，伏特除以安培才是歐姆。",
+    "common_mistakes": [
+      "用整個 USB 電壓去除電流，沒有減順向壓降。",
+      "毫安沒有換成安培。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "db-predict",
+    "topic": "diode_bjt",
+    "difficulty": "medium",
+    "thinking": "predict",
+    "type": "numeric",
+    "model": "led_usb_voltage_sags",
+    "connection": "USB 電壓下降，LED 的順向壓降與限流電阻不變。",
+    "assumptions": [
+      "LED 仍保持導通",
+      "順向壓降維持原值",
+      "只有電源電壓改變"
+    ],
+    "source_ids": [
+      "aac_diode",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "V1",
+        "values": [
+          5
+        ]
+      },
+      {
+        "name": "V2",
+        "values": [
+          4,
+          4.5
+        ]
+      },
+      {
+        "name": "Vf",
+        "values": [
+          2
+        ]
+      },
+      {
+        "name": "R",
+        "values": [
+          150,
+          200
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Iold",
+        "formula": "(V1 - Vf) / R * 1000"
+      },
+      {
+        "name": "Inew",
+        "formula": "(V2 - Vf) / R * 1000"
+      }
+    ],
+    "constraints": [
+      "V2 - Vf - 0.5",
+      "V1 - V2"
+    ],
+    "answer_formula": "Inew",
+    "unit": "mA",
+    "abs_tol": 0.1,
+    "scenarios": [
+      {
+        "id": "usb",
+        "model": "led_usb_voltage_sags",
+        "prompt": "指示燈原本接 {V1} V USB，順向壓降 {Vf} V，電阻 {R} Ω，電流約 {Iold} mA。USB 掉到 {V2} V，Vf 與電阻不變。新的電流是多少 mA？",
+        "conditions": [
+          "原電壓 {V1} V",
+          "新電壓 {V2} V",
+          "順向壓降 {Vf} V",
+          "電阻 {R} Ω"
+        ]
+      },
+      {
+        "id": "powerbank",
+        "model": "led_usb_voltage_sags",
+        "prompt": "行動電源指示燈的順向壓降 {Vf} V、電阻 {R} Ω。輸出從 {V1} V 降到 {V2} V。電流變成多少 mA？",
+        "conditions": [
+          "原來 {V1} V",
+          "後來 {V2} V",
+          "順向壓降 {Vf} V",
+          "電阻 {R} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "電流仍是 (V − Vf) / R。",
+      "原來約 {Iold} mA。",
+      "新電流 I = ({V2}−{Vf}) / {R} = {Inew} mA。"
+    ],
+    "substitution": "I = ({V2} - {Vf}) / {R} = {Inew} mA",
+    "unit_check": "伏特差除以歐姆，再換成毫安。",
+    "common_mistakes": [
+      "電壓下降時仍用原來的 {V1} V。",
+      "把 LED 換成一般電阻，用新電壓直接除以 R。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "rel_tol": 0.01
+  },
+  {
+    "id": "db-error",
+    "topic": "diode_bjt",
+    "difficulty": "hard",
+    "thinking": "error",
+    "type": "choice",
+    "model": "led_drop_ignored_check",
+    "connection": "USB、順向 LED 與限流電阻串聯。",
+    "assumptions": [
+      "同學因為 LED 會亮，就把順向壓降忽略"
+    ],
+    "source_ids": [
+      "aac_diode",
+      "aac_kvl",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Vs",
+        "values": [
+          5
+        ]
+      },
+      {
+        "name": "Vf",
+        "values": [
+          2
+        ]
+      },
+      {
+        "name": "R",
+        "values": [
+          150,
+          220
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "I",
+        "formula": "(Vs - Vf) / R * 1000"
+      },
+      {
+        "name": "wrong",
+        "formula": "Vs / R * 1000"
+      }
+    ],
+    "answer_formula": "(Vs - Vf) / R * 1000",
+    "options": [
+      {
+        "text": "正確是 {I} mA；忽略順向壓降的那一步是錯的",
+        "formula": "(Vs - Vf) / R * 1000"
+      },
+      {
+        "text": "同學是對的，電流就是 {wrong} mA",
+        "formula": "Vs / R * 1000"
+      },
+      {
+        "text": "正確電流是 0，因為 LED 會把迴路開路",
+        "formula": "0"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "usb",
+        "model": "led_drop_ignored_check",
+        "prompt": "USB {Vs} V，LED 順向壓降 {Vf} V，電阻 {R} Ω。同學寫：LED 會亮，所以電壓可忽略，I = {Vs}/{R}。哪一個說法正確？",
+        "conditions": [
+          "USB {Vs} V",
+          "順向壓降 {Vf} V",
+          "電阻 {R} Ω"
+        ]
+      },
+      {
+        "id": "toy",
+        "model": "led_drop_ignored_check",
+        "prompt": "玩具指示燈電源 {Vs} V，LED 用 {Vf} V，電阻 {R} Ω。同學沒有減掉順向壓降。哪一個說法正確？",
+        "conditions": [
+          "電源 {Vs} V",
+          "順向壓降 {Vf} V",
+          "電阻 {R} Ω"
+        ]
+      }
+    ],
+    "steps": [
+      "會亮表示 LED 在導通，而不是電壓為 0。",
+      "KVL 仍要減去 {Vf} V。",
+      "I = ({Vs}−{Vf})/{R} = {I} mA，不是 {wrong} mA。"
+    ],
+    "substitution": "I = ({Vs} - {Vf}) / {R} = {I} mA",
+    "unit_check": "正確與錯誤的結果都是毫安，差在有沒有減掉順向壓降。",
+    "common_mistakes": [
+      "接受 Vs/R。",
+      "導通的 LED 被看成開路。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "abs_tol": 0.05,
+    "rel_tol": 0.01
+  },
+  {
+    "id": "db-fault",
+    "topic": "diode_bjt",
+    "difficulty": "hard",
+    "thinking": "fault",
+    "type": "numeric",
+    "model": "led_shorted",
+    "connection": "LED 被短路後，限流電阻單獨跨在 USB 電源上。",
+    "assumptions": [
+      "LED 兩端電壓變成 0",
+      "電阻沒有開路",
+      "不再使用順向壓降"
+    ],
+    "source_ids": [
+      "aac_diode",
+      "aac_ohm",
+      "nycu_ch2"
+    ],
+    "variables": [
+      {
+        "name": "Vs",
+        "values": [
+          5
+        ]
+      },
+      {
+        "name": "Vf",
+        "values": [
+          2
+        ]
+      },
+      {
+        "name": "R",
+        "values": [
+          100,
+          150,
+          220
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Ishort",
+        "formula": "Vs / R * 1000"
+      },
+      {
+        "name": "Inorm",
+        "formula": "(Vs - Vf) / R * 1000"
+      }
+    ],
+    "answer_formula": "Ishort",
+    "unit": "mA",
+    "abs_tol": 0.1,
+    "scenarios": [
+      {
+        "id": "usb",
+        "model": "led_shorted",
+        "prompt": "USB {Vs} V 的指示燈原本順向壓降 {Vf} V、電阻 {R} Ω。LED 被短路後，電阻上的電流是多少 mA？",
+        "conditions": [
+          "USB {Vs} V",
+          "原順向壓降 {Vf} V",
+          "電阻 {R} Ω",
+          "LED 已短路"
+        ]
+      },
+      {
+        "id": "toy",
+        "model": "led_shorted",
+        "prompt": "玩具 LED 短路。電源仍是 {Vs} V，限流電阻仍是 {R} Ω，原本的順向壓降是 {Vf} V。短路後的電流是多少 mA？",
+        "conditions": [
+          "電源 {Vs} V",
+          "電阻 {R} Ω",
+          "原順向壓降 {Vf} V"
+        ]
+      }
+    ],
+    "steps": [
+      "LED 短路後，電阻直接接到電源。",
+      "正常時約是 {Inorm} mA。",
+      "短路後 I = {Vs}/{R} = {Ishort} mA。"
+    ],
+    "substitution": "I = {Vs} / {R} = {Ishort} mA",
+    "unit_check": "伏特除以歐姆，再換成毫安。",
+    "common_mistakes": [
+      "短路後仍減掉 {Vf} V。",
+      "認為短路後電流是 0。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "rel_tol": 0.01
+  },
+  {
+    "id": "db-bjt",
+    "topic": "diode_bjt",
+    "difficulty": "hard",
+    "thinking": "reverse",
+    "type": "numeric",
+    "model": "toy_lamp_base_current",
+    "connection": "NPN 當開關，射極接地，集極串一盞小燈。主動區用 Ic = β Ib 估計所需的基極電流。",
+    "assumptions": [
+      "仍在主動區，尚未用飽和模型",
+      "β 使用題目給的常數",
+      "小燈的電流就是指定的集極電流"
+    ],
+    "source_ids": [
+      "aac_bjt",
+      "aac_bias"
+    ],
+    "variables": [
+      {
+        "name": "Ic_mA",
+        "values": [
+          20,
+          50,
+          100
+        ]
+      },
+      {
+        "name": "beta",
+        "values": [
+          50,
+          100
+        ]
+      }
+    ],
+    "derived": [
+      {
+        "name": "Ib_uA",
+        "formula": "Ic_mA / beta * 1000"
+      }
+    ],
+    "answer_formula": "Ib_uA",
+    "unit": "µA",
+    "abs_tol": 0.2,
+    "scenarios": [
+      {
+        "id": "car",
+        "model": "toy_lamp_base_current",
+        "prompt": "玩具車頭燈由 NPN 驅動，希望集極電流 {Ic_mA} mA。β = {beta}，仍用主動區的 Ic = β Ib。基極電流至少要多少 µA？",
+        "conditions": [
+          "目標集極電流 {Ic_mA} mA",
+          "β = {beta}"
+        ]
+      },
+      {
+        "id": "night",
+        "model": "toy_lamp_base_current",
+        "prompt": "夜燈的開關電晶體要讓燈有 {Ic_mA} mA。β = {beta}，主動區估計。Ib 是多少 µA？",
+        "conditions": [
+          "燈電流 {Ic_mA} mA",
+          "β = {beta}"
+        ]
+      }
+    ],
+    "steps": [
+      "主動區裡 Ib = Ic / β。",
+      "集極電流先維持毫安，再換成微安。",
+      "Ib = {Ic_mA} / {beta} = {Ib_uA} µA。"
+    ],
+    "substitution": "Ib = {Ic_mA} / {beta} * 1000 = {Ib_uA} µA",
+    "unit_check": "毫安除以沒有單位的 β，乘 1000 後是微安。",
+    "common_mistakes": [
+      "用 β 乘上集極電流去求基極電流。",
+      "飽和以後仍認為需要這麼大的基極電流才能維持燈的電流。"
+    ],
+    "step_rule": "用這一題抽到的數值填入步驟。正解與解析來自這個題型自己的公式。",
+    "rel_tol": 0.01
+  }
+]
